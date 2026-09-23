@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+ <meta name="filmify-version" content="development">
+ <meta name="filmify-repository" content="">
+ <link rel="icon" href="data:,">
+ <!-- 2026-09-22 12:56 拍板:浅色主题删除,「暗房之夜」深色为唯一主题;
+      原 ?theme= 切换/记忆引导脚本随之退役 -->
+ <title>Filmify · 胶片冲印</title>
+ <link rel="stylesheet" href="./studio.css">
+</head>
+<body>
+ <main class="phone app" id="studio" data-asset-root="./">
+  <div id="screen"></div>
+  <p id="toast" role="status" aria-live="polite"></p>
+  <input id="fileInput" type="file" accept="image/*" hidden>
+  <canvas id="view" hidden></canvas>
+  <pre id="licenseText" hidden><!-- FILMIFY_LICENSE --></pre>
+ </main>
+ <script src="./flex-gap.js"></script>
+ <script src="./styles/presets.js"></script>
+ <script src="./styles/presets-mobile.js"></script>
+ <script src="./styles/presets-prints.js"></script>
+ <script src="./styles/presets-scans.js"></script>
+ <script src="./styles/grain-stats.js"></script>
+ <script src="./materials.js"></script>
+ <script src="./yield.js"></script>
+ <script src="./negative-preview.js"></script>
+ <script src="./native-film.js"></script>
+ <script src="./mobile-film.js"></script>
+ <script src="./mobile-optics.js"></script>
+ <script src="./exposure.js"></script>
+ <script src="./engine.js"></script>
+ <script src="./host.js"></script>
+ <script src="./print-design.js"></script>
+ <script src="./live-wipe.js"></script>
+ <script src="./collage-grid.js"></script>
+ <script src="./collage-compare.js"></script>
+ <script src="./app.js"></script>
+</body>
+</html>

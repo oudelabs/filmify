@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"></head><body>
+<script src="/dist/xhs-tool/styles/presets.js"></script>
+<script src="/dist/xhs-tool/styles/presets-mobile.js"></script>
+<script src="/dist/xhs-tool/styles/presets-prints.js"></script>
+<script src="/dist/xhs-tool/styles/presets-scans.js"></script>
+<script src="/dist/xhs-tool/styles/grain-stats.js"></script>
+<script src="/dist/xhs-tool/yield.js"></script>
+<script src="/dist/xhs-tool/native-film.js"></script>
+<script src="/dist/xhs-tool/mobile-film.js"></script>
+<script src="/dist/xhs-tool/mobile-optics.js"></script>
+<script src="/dist/xhs-tool/exposure.js"></script>
+<script src="/dist/xhs-tool/engine.js"></script>
+<script>
+'use strict';
+// 单张原图 × 11 款配方批量渲染桥（宫格图用）。
+// 与 app.js 真实冲印路径同参数：filmFormatMm=该胶片默认画幅(formats[0])、paper=0、autoExposure=false。
+window.SG=(()=>{
+ let inited=false;
+ const loaded={};
+ async function init(){
+  if(inited)return;
+  const canvas=document.createElement('canvas');
+  document.body.appendChild(canvas);
+  FilmifyEngine.init(canvas,'/dist/xhs-tool/');
+  inited=true;
+ }
+ async function render(photoUrl,style,filmFormatMm,opts){
+  await init();
+  const o=Object.assign({filmFormatMm:filmFormatMm,paper:null,autoExposure:false},opts||{});
+  const ck=style+'|'+(o.paper||'');
+  if(!loaded[ck]){await FilmifyEngine.loadColors(style,o.paper||undefined);loaded[ck]=1;}
+  const img=await new Promise((resolve,reject)=>{
+   const im=new Image();im.onload=()=>resolve(im);im.onerror=()=>reject(new Error('照片加载失败'));
+   im.src=photoUrl;
+  });
+  // 大图惰性解码规避:onload 不代表已解码;先 decode() 再落地到 2d 画布,
+  // 否则首块 tile 的 drawImage 可能画进未解码空图(首块均匀暗,其余块正常)。
+  try{await img.decode();}catch(e){}
+  const flat=document.createElement('canvas');
+  flat.width=img.naturalWidth;flat.height=img.naturalHeight;
+  const fctx=flat.getContext('2d',{colorSpace:'srgb'});
+  fctx.imageSmoothingEnabled=false;
+  fctx.drawImage(img,0,0);
+  FilmifyEngine.setImage(flat);
+  const t=performance.now();
+  const r=await FilmifyEngine.develop(style,null,o);
+  const ms=Math.round(performance.now()-t);
+  const b64=await new Promise(resolve=>{
+   const fr=new FileReader();fr.onload=()=>resolve(String(fr.result).split(',')[1]);fr.readAsDataURL(r.blob);
+  });
+  return {png:b64,w:r.width,h:r.height,ms:ms};
+ }
+ return {render:render};
+})();
+</script>
+</body></html>

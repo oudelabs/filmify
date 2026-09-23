@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><title>dist smoke harness</title></head>
+<body>
+<pre id="result">running</pre>
+<canvas id="view" hidden></canvas>
+<!-- Loads the PACKAGED engine stack (dist/xhs-tool), never the source tree. -->
+<script src="/dist/xhs-tool/styles/presets.js"></script>
+<script src="/dist/xhs-tool/styles/presets-mobile.js"></script>
+<script src="/dist/xhs-tool/styles/presets-prints.js"></script>
+<script src="/dist/xhs-tool/styles/presets-scans.js"></script>
+<script src="/dist/xhs-tool/styles/grain-stats.js"></script>
+<script src="/dist/xhs-tool/yield.js"></script>
+<script src="/dist/xhs-tool/native-film.js"></script>
+<script src="/dist/xhs-tool/mobile-film.js"></script>
+<script src="/dist/xhs-tool/mobile-optics.js"></script>
+<script src="/dist/xhs-tool/exposure.js"></script>
+<script src="/dist/xhs-tool/engine.js"></script>
+<script>
+(async()=>{
+ const out={checks:{},errors:[]};
+ window.onerror=msg=>{out.errors.push(String(msg));};
+ function fail(name,detail){out.errors.push(name+': '+detail);out.checks[name]='FAIL';}
+ try{
+  FilmifyEngine.init(document.getElementById('view'),'/dist/xhs-tool/');
+  const load=src=>new Promise((resolve,reject)=>{const i=new Image();i.onload=()=>resolve(i);i.onerror=()=>reject(new Error('image load failed'));i.src=src;});
+  const pixels=async blob=>{
+   const url=URL.createObjectURL(blob),im=await load(url),w=im.naturalWidth,h=im.naturalHeight;
+   const c=document.createElement('canvas');c.width=w;c.height=h;const x=c.getContext('2d');
+   x.drawImage(im,0,0);const d=x.getImageData(0,0,w,h).data;c.width=c.height=1;im.src='';URL.revokeObjectURL(url);
+   return {w:w,h:h,data:d};
+  };
+  // Synthetic 640x400 photo: gradient + colour blocks.
+  const c=document.createElement('canvas');c.width=640;c.height=400;const x=c.getContext('2d');
+  const grad=x.createLinearGradient(0,0,640,400);grad.addColorStop(0,'#8a6a4a');grad.addColorStop(.5,'#c9b98f');grad.addColorStop(1,'#3a4a5c');
+  x.fillStyle=grad;x.fillRect(0,0,640,400);x.fillStyle='#d9503c';x.fillRect(80,80,140,140);x.fillStyle='#3c8a50';x.fillRect(400,180,160,120);
+  const image=await load(c.toDataURL('image/png'));c.width=c.height=1;
+
+  // 1. Shared-print develop (2026-09-22 LUT 重构): paper=印相载体 profile id。
+  const progress=[];
+  FilmifyEngine.setImage(image);
+  const plain=await FilmifyEngine.develop('portrait',p=>progress.push(p),{autoExposure:false,paper:'kodak_portra_endura'});
+  out.checks.dimensions=(plain.width===640&&plain.height===400)?'PASS':'FAIL '+plain.width+'x'+plain.height;
+  out.checks.progress=(progress.length>2&&progress[0]>=1&&progress[progress.length-1]===100)?'PASS ('+progress.length+' events)':'FAIL '+progress.slice(0,5);
+
+  // 1b. 换印相载体:同一胶卷换纸必须出不同画面(验证 recipe/纹理切换接线)。
+  FilmifyEngine.setImage(image);
+  const supra=await FilmifyEngine.develop('portrait',null,{autoExposure:false,paper:'kodak_supra_endura'});
+  const pa=await pixels(plain.blob),pb=await pixels(supra.blob);
+  let pd=0;for(let i=0;i<pa.data.length;i+=401*4){pd=Math.max(pd,Math.abs(pa.data[i]-pb.data[i]),Math.abs(pa.data[i+1]-pb.data[i+1]),Math.abs(pa.data[i+2]-pb.data[i+2]));}
+  out.checks.printSwitch=pd>2?'PASS (max sampled delta '+pd+')':'FAIL 换纸无差异 '+pd;
+
+  // 2. Mono stock through the mobile core (sqrt shaper + neutral grain).
+  FilmifyEngine.setImage(image);
+  const mono=await FilmifyEngine.develop('trix',null,{autoExposure:false});
+  const m=await pixels(mono.blob);
+  let monoDelta=0;
+  for(let i=0;i<m.data.length;i+=4){const v=Math.max(Math.abs(m.data[i]-m.data[i+1]),Math.abs(m.data[i]-m.data[i+2]));if(v>monoDelta)monoDelta=v;}
+  out.checks.monoNeutral=monoDelta<=1?'PASS (max channel delta '+monoDelta+')':'FAIL max channel delta '+monoDelta;
+  // 3. Performance spot-check at 6MP (desktop headless, informational).
+  const big=document.createElement('canvas');big.width=3000;big.height=2000;const bx=big.getContext('2d');
+  const bgrad=bx.createLinearGradient(0,0,3000,2000);bgrad.addColorStop(0,'#7a5a4a');bgrad.addColorStop(1,'#3a5a6c');
+  bx.fillStyle=bgrad;bx.fillRect(0,0,3000,2000);bx.fillStyle='#d9503c';bx.fillRect(500,400,800,700);
+  const bigImage=await load(big.toDataURL('image/png'));big.width=big.height=1;
+  FilmifyEngine.setImage(bigImage);
+  const t0=performance.now();
+  await FilmifyEngine.develop('portrait',null,{autoExposure:false,paper:'kodak_portra_endura'});
+  const plainMs=Math.round(performance.now()-t0);
+  bigImage.src='';
+  out.checks.timing='PASS — 6MP develop '+plainMs+'ms (desktop headless, informational)';
+  image.src='';
+ }catch(error){out.errors.push(String(error&&error.message||error));}
+ out.verdict=out.errors.length===0&&Object.values(out.checks).every(v=>String(v).startsWith('PASS'))?'PASS':'FAIL';
+ document.getElementById('result').textContent=JSON.stringify(out,null,1);
+ document.title='SMOKE:'+out.verdict;
+})();
+</script>
+</body>
+</html>

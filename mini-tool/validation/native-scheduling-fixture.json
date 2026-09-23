@@ -1,0 +1,339 @@
+{
+  "source": "native-film.js before cooperative scheduling, 2026-09-23; 37x29 float32 input ((i*17)%97)/97",
+  "gaussian": [
+    {
+      "sigma": 0,
+      "hash": "a0df8277f8be4a1a75e714813cba5e9653593bc37b9af4029b50f1782e045f6f"
+    },
+    {
+      "sigma": 0.4,
+      "hash": "09aa8b0c9b68c91be435a6a5c7c9aa60b550d7e846eea2f130beac5c9cd12acb"
+    },
+    {
+      "sigma": 1.2,
+      "hash": "9942b0e7d400f153882991229306e06e698d6dd51c75d7cc679bc8eab4b8a7ae"
+    },
+    {
+      "sigma": 2.8,
+      "hash": "1a6de172414096b3b36a52a0457aaa02a886c30e469446e9cd8f4ac3b1398c80"
+    },
+    {
+      "sigma": 3,
+      "hash": "7e1535f05fd1e1abd5f00b2c9436127ebd6ff7f5e9356013e419369deaa65d18"
+    },
+    {
+      "sigma": 8,
+      "hash": "2e0d15167d7281e69c917176a7b44e9f01a31b7bd9454322ed0164adfa910a73"
+    }
+  ],
+  "optics": [
+    {
+      "key": "gold",
+      "ch": 0,
+      "um": 8,
+      "params": {
+        "active": true,
+        "scatter_amount": 1,
+        "scatter_spatial_scale": 1,
+        "halation_amount": 1,
+        "halation_spatial_scale": 1,
+        "scatter_core_um": [
+          2.2,
+          2,
+          1.6
+        ],
+        "scatter_tail_um": [
+          9.3,
+          9.7,
+          9.1
+        ],
+        "scatter_tail_weight": [
+          0.78,
+          0.65,
+          0.67
+        ],
+        "boost_ev": 0,
+        "boost_range": 0.3,
+        "protect_ev": 4,
+        "halation_strength": [
+          0.08,
+          0.02,
+          0
+        ],
+        "halation_first_sigma_um": [
+          65,
+          65,
+          65
+        ],
+        "halation_n_bounces": 3,
+        "halation_bounce_decay": 0.5,
+        "halation_renormalize": true
+      },
+      "hash": "e5ef364ebdafc28288f88140848715144851f46987f507835eccc2545703e6d9"
+    },
+    {
+      "key": "gold",
+      "ch": 1,
+      "um": 8,
+      "params": {
+        "active": true,
+        "scatter_amount": 1,
+        "scatter_spatial_scale": 1,
+        "halation_amount": 1,
+        "halation_spatial_scale": 1,
+        "scatter_core_um": [
+          2.2,
+          2,
+          1.6
+        ],
+        "scatter_tail_um": [
+          9.3,
+          9.7,
+          9.1
+        ],
+        "scatter_tail_weight": [
+          0.78,
+          0.65,
+          0.67
+        ],
+        "boost_ev": 0,
+        "boost_range": 0.3,
+        "protect_ev": 4,
+        "halation_strength": [
+          0.08,
+          0.02,
+          0
+        ],
+        "halation_first_sigma_um": [
+          65,
+          65,
+          65
+        ],
+        "halation_n_bounces": 3,
+        "halation_bounce_decay": 0.5,
+        "halation_renormalize": true
+      },
+      "hash": "8c3e89d3dfbee7288e200a06d198f9ce4d83591c4304ec2775fa82cffb26fd6a"
+    },
+    {
+      "key": "gold",
+      "ch": 2,
+      "um": 8,
+      "params": {
+        "active": true,
+        "scatter_amount": 1,
+        "scatter_spatial_scale": 1,
+        "halation_amount": 1,
+        "halation_spatial_scale": 1,
+        "scatter_core_um": [
+          2.2,
+          2,
+          1.6
+        ],
+        "scatter_tail_um": [
+          9.3,
+          9.7,
+          9.1
+        ],
+        "scatter_tail_weight": [
+          0.78,
+          0.65,
+          0.67
+        ],
+        "boost_ev": 0,
+        "boost_range": 0.3,
+        "protect_ev": 4,
+        "halation_strength": [
+          0.08,
+          0.02,
+          0
+        ],
+        "halation_first_sigma_um": [
+          65,
+          65,
+          65
+        ],
+        "halation_n_bounces": 3,
+        "halation_bounce_decay": 0.5,
+        "halation_renormalize": true
+      },
+      "hash": "9c4784de079bc1de950da5aa3a87369451783a1605cf305e0b9c4fdb2a86e6fa"
+    },
+    {
+      "key": "velvia",
+      "ch": 0,
+      "um": 8,
+      "params": {
+        "active": true,
+        "scatter_amount": 1,
+        "scatter_spatial_scale": 1,
+        "halation_amount": 1,
+        "halation_spatial_scale": 1,
+        "scatter_core_um": [
+          2.2,
+          2,
+          1.6
+        ],
+        "scatter_tail_um": [
+          9.3,
+          9.7,
+          9.1
+        ],
+        "scatter_tail_weight": [
+          0.78,
+          0.65,
+          0.67
+        ],
+        "boost_ev": 0,
+        "boost_range": 0.3,
+        "protect_ev": 4,
+        "halation_strength": [
+          0.015,
+          0.005,
+          0
+        ],
+        "halation_first_sigma_um": [
+          65,
+          65,
+          65
+        ],
+        "halation_n_bounces": 3,
+        "halation_bounce_decay": 0.5,
+        "halation_renormalize": true
+      },
+      "hash": "7d3aa61fd8f7a38f67e6231f44ff878aedff0e255312c5a1bbdf5fa9b0928e06"
+    },
+    {
+      "key": "velvia",
+      "ch": 1,
+      "um": 8,
+      "params": {
+        "active": true,
+        "scatter_amount": 1,
+        "scatter_spatial_scale": 1,
+        "halation_amount": 1,
+        "halation_spatial_scale": 1,
+        "scatter_core_um": [
+          2.2,
+          2,
+          1.6
+        ],
+        "scatter_tail_um": [
+          9.3,
+          9.7,
+          9.1
+        ],
+        "scatter_tail_weight": [
+          0.78,
+          0.65,
+          0.67
+        ],
+        "boost_ev": 0,
+        "boost_range": 0.3,
+        "protect_ev": 4,
+        "halation_strength": [
+          0.015,
+          0.005,
+          0
+        ],
+        "halation_first_sigma_um": [
+          65,
+          65,
+          65
+        ],
+        "halation_n_bounces": 3,
+        "halation_bounce_decay": 0.5,
+        "halation_renormalize": true
+      },
+      "hash": "0bfd9f36728c0df5ad41d37a409a2bdcfbd1ca3a5336bbc2acb2d51f910931fd"
+    },
+    {
+      "key": "velvia",
+      "ch": 2,
+      "um": 8,
+      "params": {
+        "active": true,
+        "scatter_amount": 1,
+        "scatter_spatial_scale": 1,
+        "halation_amount": 1,
+        "halation_spatial_scale": 1,
+        "scatter_core_um": [
+          2.2,
+          2,
+          1.6
+        ],
+        "scatter_tail_um": [
+          9.3,
+          9.7,
+          9.1
+        ],
+        "scatter_tail_weight": [
+          0.78,
+          0.65,
+          0.67
+        ],
+        "boost_ev": 0,
+        "boost_range": 0.3,
+        "protect_ev": 4,
+        "halation_strength": [
+          0.015,
+          0.005,
+          0
+        ],
+        "halation_first_sigma_um": [
+          65,
+          65,
+          65
+        ],
+        "halation_n_bounces": 3,
+        "halation_bounce_decay": 0.5,
+        "halation_renormalize": true
+      },
+      "hash": "9c4784de079bc1de950da5aa3a87369451783a1605cf305e0b9c4fdb2a86e6fa"
+    },
+    {
+      "key": "trix",
+      "ch": 0,
+      "um": 8,
+      "params": {
+        "active": true,
+        "scatter_amount": 1,
+        "scatter_spatial_scale": 1,
+        "halation_amount": 1,
+        "halation_spatial_scale": 1,
+        "scatter_core_um": [
+          2.2,
+          2,
+          1.6
+        ],
+        "scatter_tail_um": [
+          9.3,
+          9.7,
+          9.1
+        ],
+        "scatter_tail_weight": [
+          0.78,
+          0.65,
+          0.67
+        ],
+        "boost_ev": 0,
+        "boost_range": 0.3,
+        "protect_ev": 4,
+        "halation_strength": [
+          0.015,
+          0.005,
+          0
+        ],
+        "halation_first_sigma_um": [
+          50,
+          50,
+          50
+        ],
+        "halation_n_bounces": 3,
+        "halation_bounce_decay": 0.5,
+        "halation_renormalize": true
+      },
+      "hash": "4a5f45662f4b9fdb1690a445e48208af6a6d36f74ffb51b472e22516fb603304"
+    }
+  ]
+}

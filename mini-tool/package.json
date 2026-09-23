@@ -1,0 +1,25 @@
+{
+  "name": "filmify",
+  "private": true,
+  "version": "1.0.1",
+  "license": "GPL-3.0-only",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oudelabs/filmify.git"
+  },
+  "description": "Filmify 数字胶片工坊 — 小红书小工具预览与验证脚本宿主",
+  "scripts": {
+    "dev": "node scripts/dev-server.js",
+    "build": "python3 scripts/build-minitool.py",
+    "smoke": "node scripts/dist-smoke-check.cjs",
+    "verify:ui": "node scripts/verify-v4-ui.cjs",
+    "verify:release": "node scripts/verify-release.cjs",
+    "test": "node --test tests/engine-resources.test.cjs tests/minitool-share.test.cjs tests/dev-server.test.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.63.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

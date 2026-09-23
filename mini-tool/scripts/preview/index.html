@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Filmify · 屏幕尺寸预览</title>
+  <style>
+    :root{color-scheme:dark;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;color:#ece5d6;background:#171512}
+    *{box-sizing:border-box}body{margin:0;height:100vh;height:100dvh;display:flex;flex-direction:column}
+    header{flex:none;padding:16px 20px;background:#211e19;border-bottom:1px solid #3a342c}
+    .heading{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+    h1{font-size:16px;margin:0;font-weight:600}.note{font-size:12px;color:#b5ae9e;margin:0;line-height:1.5}
+    form{display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap}label{display:flex;flex-direction:column;gap:6px;font-size:12px;color:#b5ae9e}
+    input,select,button,a{font:inherit}input,select,button{height:38px;border:1px solid #554b3d;border-radius:8px;background:#2c2720;color:#ece5d6;padding:0 10px;font-size:13px}
+    input{width:86px}select{max-width:100%}button{cursor:pointer;font-weight:500}button:hover{background:#3c3328}button:active{transform:translateY(1px)}
+    :focus-visible{outline:2px solid #e5a16e;outline-offset:3px}.apply{background:#c96f37;color:#171512;border-color:#c96f37;font-weight:600}.apply:hover{background:#dc8248}
+    .dimensions{display:flex;gap:8px;align-items:flex-end}.cross{align-self:flex-end;padding-bottom:9px;color:#b5ae9e}
+    .link{color:#d9cbb4;font-size:13px;padding:10px 2px;text-underline-offset:3px}.status{margin-left:auto;align-self:flex-end;font-size:12px;color:#b5ae9e;line-height:38px;white-space:nowrap}
+    main{flex:1;min-height:0;overflow:auto;padding:24px;background:radial-gradient(ellipse at top,#29241d,#13120f 80%)}
+    .stage{position:relative;margin:0 auto;background:#171512;box-shadow:0 12px 48px #0007;outline:1px solid #514538}
+    iframe{display:block;position:absolute;left:0;top:0;border:0;transform-origin:top left;background:#171512}
+    @media(max-width:600px){header{padding:12px}.heading{margin-bottom:10px}.status{margin-left:0;line-height:24px}.note{font-size:11px}main{padding:16px}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="heading"><h1>Filmify <span style="font-weight:400;color:#b5ae9e">/ 屏幕尺寸预览</span></h1><p class="note">尺寸以 CSS 像素计；适应窗口仅缩放显示，不改变页面布局。</p></div>
+    <form id="controls">
+      <label>常用尺寸<select id="preset" aria-label="常用屏幕尺寸">
+        <option value="320,568">小屏手机 · 320 × 568</option>
+        <option value="375,667">标准手机 · 375 × 667</option>
+        <option value="390,844" selected>全面屏手机 · 390 × 844</option>
+        <option value="393,852">全面屏手机 · 393 × 852</option>
+        <option value="430,932">大屏手机 · 430 × 932</option>
+        <option value="768,1024">平板 · 768 × 1024</option>
+        <option value="1440,900">桌面 · 1440 × 900</option>
+        <option value="custom">自定义</option>
+      </select></label>
+      <div class="dimensions"><label>宽度<input id="width" type="number" min="240" max="3840" step="1" value="390" required aria-label="视口宽度"></label><span class="cross">×</span><label>高度<input id="height" type="number" min="240" max="3840" step="1" value="844" required aria-label="视口高度"></label></div>
+      <button class="apply" type="submit">应用尺寸</button>
+      <button id="rotate" type="button">横竖切换</button>
+      <label>显示缩放<select id="zoom" aria-label="显示缩放"><option value="fit">适应窗口</option><option value="1">100%</option><option value="0.75">75%</option><option value="0.5">50%</option></select></label>
+      <button id="reload" type="button">重载页面</button>
+      <a class="link" href="/" target="_blank" rel="noopener">打开原页面 ↗</a>
+      <output class="status" id="status" aria-live="polite"></output>
+    </form>
+  </header>
+  <main id="workspace" aria-label="页面预览区"><div class="stage" id="stage"><iframe id="app" title="Filmify 交互预览" src="/" allow="web-share"></iframe></div></main>
+  <script>
+    const $=id=>document.getElementById(id);
+    const frame=$('app'),stage=$('stage'),workspace=$('workspace');
+    let width=390,height=844;
+    function fit(){
+      const style=getComputedStyle(workspace);
+      const availableWidth=workspace.clientWidth-parseFloat(style.paddingLeft)-parseFloat(style.paddingRight);
+      const availableHeight=workspace.clientHeight-parseFloat(style.paddingTop)-parseFloat(style.paddingBottom);
+      const scale=$('zoom').value==='fit'?Math.max(.05,Math.min(1,availableWidth/width,availableHeight/height)):Number($('zoom').value);
+      stage.style.width=(width*scale)+'px';stage.style.height=(height*scale)+'px';
+      frame.style.transform='scale('+scale+')';
+      $('status').textContent=width+' × '+height+' · 显示 '+Math.round(scale*100)+'%';
+    }
+    function apply(){
+      if(!$('controls').reportValidity())return;
+      width=Number($('width').value);height=Number($('height').value);
+      frame.style.width=width+'px';frame.style.height=height+'px';
+      const value=width+','+height;
+      $('preset').value=Array.from($('preset').options).some(option=>option.value===value)?value:'custom';
+      fit();
+    }
+    $('controls').addEventListener('submit',event=>{event.preventDefault();apply();});
+    $('preset').addEventListener('change',()=>{if($('preset').value==='custom'){$('width').focus();return;}const size=$('preset').value.split(',');$('width').value=size[0];$('height').value=size[1];apply();});
+    $('rotate').addEventListener('click',()=>{if(!$('controls').reportValidity())return;const w=$('width').value;$('width').value=$('height').value;$('height').value=w;apply();});
+    $('zoom').addEventListener('change',fit);
+    $('reload').addEventListener('click',()=>frame.contentWindow.location.reload());
+    new ResizeObserver(fit).observe(workspace);
+    apply();
+  </script>
+</body>
+</html>
