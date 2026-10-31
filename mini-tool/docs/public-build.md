@@ -1,72 +1,34 @@
-# 公开版本构建与复现
+# 构建、验证与自备 LUT
 
-更新：2026-09-23。当前产品规格以工具项目 README、运行时代码和注册表为准。公开仓中整套网页工具位于 `mini-tool/`，以下命令均在该目录执行；同级 `skill/` 目前仅预留。公开导出不包含历史研究文档、旧入口或研究照片。
-
-## 普通构建
-
-Node.js 22+、Python 3.10+；`npm ci` 安装锁定的开发依赖，`npx playwright install chromium` 安装浏览器。然后执行 `npm test`、`npm run verify:release`。
-
-运行时不依赖 Node 或 Python。构建只需 Python 标准库；科学计算环境仅用于下面的色彩资产再生成。`package.json` 的 `private: true` 只阻止误发布 npm 包，不影响公开源码。`repository` 已指向 [oudelabs/filmify](https://github.com/oudelabs/filmify)。
-
-发布门禁必须有 Chromium。单独 `npm run build` 在 Playwright 未安装时允许只做静态构建并警告，不能将此当成完整验收。
-
-## 共享 LUT 再生成
-
-使用单独的工作副本操作：最终步骤会更新 `styles/` 中的共享 LUT 和注册表。
-
-1. 准备 Python 3.12 虚拟环境，安装上游核心依赖：
+在 `mini-tool/` 内使用 Node.js 22+、Python 3.10+。Python 生成器只用标准库，开发依赖由锁定的 `package-lock.json` 安装。
 
 ```sh
-python3.12 -m venv .venv
-. .venv/bin/activate
-python -m pip install -r requirements-bake.txt
-```
-
-上游包导入时也会加载 RAW／镜头校正与图像 I/O 模块，因此依赖清单包含 rawpy、exiv2、lensfunpy 和 OpenImageIO，不能只安装 NumPy／SciPy。清单记录本次复现验证的版本；不同系统需有对应 wheel 或本机构建工具。
-
-2. 克隆上游并固定版本：
-
-```sh
-git clone https://github.com/andreavolpato/spektrafilm.git /path/to/spektrafilm
-git -C /path/to/spektrafilm checkout 6cd00c8d4f30b5b550f50f4bbd3753c9f2a48507
-```
-
-3. 使用随仓校准系数重建共享表：
-
-```sh
-python scripts/rebuild-shared-luts.py --reference /path/to/spektrafilm
+npm ci
+npx playwright install chromium webkit
+npm run generate:demo
 npm run verify:release
+npm run dev -- --host 127.0.0.1
 ```
 
-该入口先核对上游 revision 与工作区，再逐载体烘焙 9 张印相表和 1 张 Velvia 基准直扫表，用保存的 W 做上游数值对照，通过后生成注册表。它不重新拟合 W，不修改原始输入表、胶卷曲线或颗粒参数。PNG 压缩字节可以因工具版本不同而变化，运行时使用解码后的数值指纹。
+`npm run build` 每次从公式生成演示资源及注册表，再校验全部输入 SHA、PNG 格式、资源引用、ES2017 语法、禁用 API、ZIP CRC与体积，并用包内代码实际出图。它不联网、不读取额外色彩目录，也不从父项目寻找图片。网页运行本身不依赖 Python 或 Node。
 
-- `validation/shared-lut/pretransforms.json`：14 款彩负 × 8 种载体，非基准胶卷的 3×10 二次预变换。
-- `validation/shared-lut/pretransforms-scan.json`：Provia、Ektachrome、Kodachrome → Velvia 的 3×20 三次预变换；Velvia 自身恒等。
-- `scripts/build-shared-prints.py`、`scripts/build-shared-scans.py`：使用 staging 中的表和保存的系数生成运行时注册表。
-- `validation/shared-lut/ab-check.py`、`ab-scan.py`：对照上游密度到扫描链，任一 MAE／P99／max 门槛失败即非零退出。
+六张 512×512 RGB8 PNG 表使用 64³ 立方：蓝轴 8×8 切片、红横轴、绿纵轴，输入／输出均为编码 sRGB SDR。恒等表有 RGB8 节点量化，不声称任意浮点输入完全无误差。其他演示是显式公式，不对应任何商业胶卷。印相和负片演示公式位于同名 JS 模块，无外部色表。
 
-新模型研究需要重新拟合时，可设置 `SPEKTRAFILM_REPO=/path/to/spektrafilm` 后执行 `batch-fit.py --paper <profile>` 或 `fit-scan.py`。它们会覆盖校准 JSON，必须单独审核差异并重跑数值门禁；不是普通构建的一部分。浮点优化结果可能随科学计算库版本变化，发行构建始终使用入库系数。
+## 自备本机 LUT
 
-## 原始输入表与历史管线
+格式必须是无色彩元数据、非交错、不透明 RGB8／RGB8 索引 PNG，布局与上方相同。不会偷偷转换 CUBE、含透明像素的 RGBA、ICC、HDR 或其他数据域；需要转换时先用你自己的工具明确处理。
 
-`styles/presets.js` 保存逐胶卷曲线、原始曝光归一化和光学参数；`styles/presets-mobile.js` 保存移动端 raw 表与 Tri-X 扫描表描述。普通发行复现使用这些已入库数据。
+```sh
+npm run import:lut -- /path/to/your-look.png --id user-my-look --name '我的色表'
+npm run build:local
+```
 
-`scripts/rebake-mobile-raw.py --reference /path/to/spektrafilm` 可重建移动端 raw 表（会改 `styles/`）；随后执行 `scripts/stamp-mobile-lut-hashes.py` 和完整门禁。
+`--black-and-white` 只接受三个通道逐节点相同的表；`--replace` 才覆盖已有同名本机导入。导入先检查尺寸、CRC、解码边界及哈希，把数据和记录存入忽略的 `local-luts/`。`build:local` 显式生成含自备资源的本机包。它不会上传文件，也不会改变自备数据的许可；分发前自行确认权利。
 
-`bake-native-film.py`、`bake-mobile-film.py` 等是历史逐胶卷链路的研究工具，均需显式输出目录；其全链路输出不能直接覆盖当前共享 LUT 注册表。`styles/manifest.json` 保留各批次来源信息；当前实际共享表尺寸、指纹及 W 以 `presets-prints.js`、`presets-scans.js` 为准。
+普通 `npm run build` 始终只注册六张演示表，完全排除本机色表；它可用于恢复演示构建。`local-luts/`、`minitool/assets/local/`、`dist/` 均被 Git 忽略，不能作为默认发布附件。生成的 `style-config.js` 和演示 manifest 会随本地构建变化，准备提交时先运行普通构建恢复它们，并检查 Git diff。
 
-这些工具的公共函数仍由当前共享表和 raw 表重建脚本调用，因此随源码保留。旧三款/六款配方生成器不再分发。注册表引用的原生 raw/density 表虽然不进入运行包，仍被构建器校验来源与指纹，也必须保留。
+## 检查范围
 
-`bake-film-stocks.py` 的参考入口从已随仓的 `styles/manifest.json` 读取上游 profile 指纹，并核对固定 revision；无需额外的历史资料清单。该参考入口输出 staging 全链路表，不用于覆盖当前产品共享表。
+`npm run test:assets` 在临时目录重建公式表，核对恒等轴、非恒等效果、黑白中性、生成可复现、自备文件错误拒绝和默认排除；`npm test` 运行组件及引擎回归。`npm run verify:release` 串行运行上述检查、实际构建、Chrome／WebKit 的源／包数值和交互检查、目录与 ZIP 审计。
 
-颗粒重新标定入口为 `node scripts/calibrate-grain.cjs`，依赖随仓的 `scripts/grain-kernel-fit.cjs` 与 `validation/grain-calib-page.html`。该操作会改写 `styles/grain-stats.js`，属于模型变更，不能作为日常构建步骤执行。
-
-重建上述 8 µm 基表后，还需在原生烘焙环境运行 `python scripts/calibrate-grain-scales.py --reference /path/to/spektrafilm --output /tmp/grain-scales.json`，再运行 `node scripts/calibrate-grain-scales.cjs /tmp/grain-scales.json`，恢复 2–32 µm 的物理尺度校准。这些表来自原生均匀密度场，不使用照片拟合。`validation/grain-scale-check.cjs` 以未参与校准的密度和尺度检查真实 GPU 输出，已纳入发布门禁。
-
-## 发行边界
-
-公开导出保留当前运行时代码、所需资产、构建与验证脚本、数值基线和色彩数据重建工具。不带 Agent Skill、品牌探索稿、内部 Git 历史、研究照片、历史报告、运营资料或临时诊断日志。构建产物位于被忽略的 `dist/`。
-
-源文件按明确清单选择；LUT 只从四份注册表提取，不整目录复制。新发布门禁未进入审查清单时导出会失败，须核查脚本及其夹具后更新清单。公开仓根目录的 `PUBLIC_MANIFEST.json` 列出本次导出的源码文件及 SHA-256（不包括清单自身、本地导出标记和后续构建产物）；它是核对依据，不代表获准公开。
-
-完整桌面门禁不能替代小红书宿主的照片导入、批量内存、保存及实况分享真机验证。
+浏览器检查仅监听本机临时端口，不读取照片库，不调用真实保存／发布宿主。输出到忽略的 `validation/public-demo/`，包括结果 JSON 和合成图截图；失败直接非零退出，不自动重试。该入口验证当前公版，不套用旧模拟器或其他产品版本的完整门禁结论。

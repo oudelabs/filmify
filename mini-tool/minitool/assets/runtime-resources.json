@@ -1,0 +1,13 @@
+{
+  "edition": "open-source-demo",
+  "assets": [
+    "assets/logo-mark-t-dark.png",
+    "assets/bg-mottle.png",
+    "assets/working-sign.png",
+    "assets/caption-400.woff",
+    "assets/caption-600.woff",
+    "grain-material.png",
+    "assets/clothesline-clips.png"
+  ],
+  "dataNotice": "Portra 400 material response is CC BY-SA 4.0, distinct from demo color LUTs"
+}

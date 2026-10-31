@@ -1,25 +1,42 @@
 {
-  "name": "filmify",
+  "name": "filmify-demo",
   "private": true,
-  "version": "1.0.1",
+  "version": "2.0.8-demo.1",
   "license": "GPL-3.0-only",
   "repository": {
     "type": "git",
     "url": "https://github.com/oudelabs/filmify.git"
   },
-  "description": "Filmify 数字胶片工坊 — 小红书小工具预览与验证脚本宿主",
+  "description": "Filmify open-source editor with original analytic demo LUTs",
   "scripts": {
     "dev": "node scripts/dev-server.js",
+    "generate:demo": "python3 scripts/generate-demo-assets.py",
+    "import:lut": "python3 scripts/import-lut.py",
     "build": "python3 scripts/build-minitool.py",
+    "build:local": "python3 scripts/build-minitool.py --include-local",
     "smoke": "node scripts/dist-smoke-check.cjs",
-    "verify:ui": "node scripts/verify-v4-ui.cjs",
-    "verify:release": "node scripts/verify-release.cjs",
-    "test": "node --test tests/engine-resources.test.cjs tests/minitool-share.test.cjs tests/dev-server.test.cjs"
+    "test": "node --test --test-concurrency=1 tests/minitool-share.test.cjs tests/dev-server.test.cjs tests/editor-share.test.cjs tests/grain-resource-lifecycle.test.cjs tests/pixel-work.test.cjs tests/texture-adaptive-tile.test.cjs tests/texture-engine.test.cjs tests/fotufilm-optics.test.cjs tests/fotufilm-halation.test.cjs tests/texture-near-gaussian.test.cjs tests/grain-editor-linear.test.cjs tests/demo-contract.test.cjs",
+    "test:assets": "python3 -m unittest discover -s tests -p 'test_demo_assets.py'",
+    "verify:release": "node scripts/verify-public.cjs"
   },
   "devDependencies": {
     "playwright": "1.63.0"
   },
   "engines": {
     "node": ">=22"
-  }
+  },
+  "publicTests": [
+    "minitool-share.test.cjs",
+    "dev-server.test.cjs",
+    "editor-share.test.cjs",
+    "grain-resource-lifecycle.test.cjs",
+    "pixel-work.test.cjs",
+    "texture-adaptive-tile.test.cjs",
+    "texture-engine.test.cjs",
+    "fotufilm-optics.test.cjs",
+    "fotufilm-halation.test.cjs",
+    "texture-near-gaussian.test.cjs",
+    "grain-editor-linear.test.cjs",
+    "demo-contract.test.cjs"
+  ]
 }

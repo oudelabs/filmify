@@ -6,38 +6,44 @@
  <meta name="filmify-version" content="development">
  <meta name="filmify-repository" content="">
  <link rel="icon" href="data:,">
- <!-- 2026-09-22 12:56 拍板:浅色主题删除,「暗房之夜」深色为唯一主题;
-      原 ?theme= 切换/记忆引导脚本随之退役 -->
- <title>Filmify · 胶片冲印</title>
+ <title>Filmify · 开源演示版</title>
  <link rel="stylesheet" href="./studio.css">
+ <link rel="stylesheet" href="./editor-share.css">
 </head>
 <body>
  <main class="phone app" id="studio" data-asset-root="./">
   <div id="screen"></div>
   <p id="toast" role="status" aria-live="polite"></p>
-  <input id="fileInput" type="file" accept="image/*" hidden>
-  <canvas id="view" hidden></canvas>
+  <input id="fileInput" type="file" accept="image/*" multiple hidden>
   <pre id="licenseText" hidden><!-- FILMIFY_LICENSE --></pre>
  </main>
  <script src="./flex-gap.js"></script>
- <script src="./styles/presets.js"></script>
- <script src="./styles/presets-mobile.js"></script>
- <script src="./styles/presets-prints.js"></script>
- <script src="./styles/presets-scans.js"></script>
- <script src="./styles/grain-stats.js"></script>
- <script src="./materials.js"></script>
  <script src="./yield.js"></script>
- <script src="./negative-preview.js"></script>
- <script src="./native-film.js"></script>
- <script src="./mobile-film.js"></script>
- <script src="./mobile-optics.js"></script>
- <script src="./exposure.js"></script>
- <script src="./engine.js"></script>
+ <script src="./grain-material-data.js"></script>
+ <script src="./grain-material.js"></script>
+ <script src="./pixel-color.js"></script>
+ <script src="./pixel-render.js"></script>
+ <script src="./pixel-encode.js"></script>
+ <script src="./pixel-work.js"></script>
+ <script src="./standard-data.js"></script>
+ <script src="./standard-cpu.js"></script>
+ <script src="./standard-glsl.js"></script>
+ <script src="./standard-renderer.js"></script>
+ <script src="./grain.js"></script>
  <script src="./host.js"></script>
  <script src="./print-design.js"></script>
- <script src="./live-wipe.js"></script>
  <script src="./collage-grid.js"></script>
  <script src="./collage-compare.js"></script>
+ <script src="./clothesline.js"></script>
+ <script src="./texture-optics.js"></script>
+ <script src="./style-config.js"></script>
+ <script src="./paper-adaptation.js"></script>
+ <script src="./recipe-config.js"></script>
+ <script src="./halation-data.js"></script>
+ <script src="./texture-halation.js"></script>
+ <script src="./texture-engine.js"></script>
+ <script src="./editor-share.js"></script>
+ <script src="./negative-preview.js"></script>
  <script src="./app.js"></script>
 </body>
 </html>

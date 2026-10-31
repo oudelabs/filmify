@@ -1,0 +1,8 @@
+/* Original demo styles; generated from explicit mathematical functions. GPL-3.0-only. */
+(function(root){'use strict';
+ const items=[{"id": "demo-identity", "name": "恒等演示", "sourceName": "恒等演示", "stockCategory": "creative", "blackAndWhite": false, "lut": "./assets/demo/identity.png", "texture": {"grain": 1, "soft": 0, "halation": 0}}, {"id": "demo-warm", "name": "暖色演示", "sourceName": "暖色演示", "stockCategory": "creative", "blackAndWhite": false, "lut": "./assets/demo/warm.png", "texture": {"grain": 1, "soft": 0, "halation": 0}}, {"id": "demo-cool", "name": "冷色演示", "sourceName": "冷色演示", "stockCategory": "creative", "blackAndWhite": false, "lut": "./assets/demo/cool.png", "texture": {"grain": 1, "soft": 0, "halation": 0}}, {"id": "demo-soft", "name": "柔和演示", "sourceName": "柔和演示", "stockCategory": "creative", "blackAndWhite": false, "lut": "./assets/demo/soft.png", "texture": {"grain": 1, "soft": 0, "halation": 0}}, {"id": "demo-vivid", "name": "对比演示", "sourceName": "对比演示", "stockCategory": "creative", "blackAndWhite": false, "lut": "./assets/demo/vivid.png", "texture": {"grain": 1, "soft": 0, "halation": 0}}, {"id": "demo-mono", "name": "黑白演示", "sourceName": "黑白演示", "stockCategory": "black-and-white", "blackAndWhite": true, "lut": "./assets/demo/mono.png", "texture": {"grain": 1, "soft": 0, "halation": 0}}];
+ function get(id){return items.find(item=>item.id===id)||items[0];}
+ function settings(id){const item=get(id);return Object.assign({style:item.id,tone:0,color:0},item.texture);}
+ root.FilmifyStyles={defaultId:'demo-identity',items:items,get:get,settings:settings};
+ if(typeof module==='object'&&module.exports)module.exports=root.FilmifyStyles;
+})(typeof window==='object'?window:global);

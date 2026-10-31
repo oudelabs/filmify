@@ -1,0 +1,17 @@
+/* The editor's main photo has no zoom; these rules belong only to delivered
+   results and their existing static templates. */
+.editor-share-toast{position:fixed;left:50%;transform:translateX(-50%);bottom:100px;max-width:calc(100% - 48px);padding:11px 16px;border-radius:999px;background:#3c3632eb;color:#fffaf0;font-size:14px;line-height:1.5;text-align:center;pointer-events:none;z-index:50}
+.editor-collage-status{margin:0;text-align:center;font-size:12px;line-height:1.5;color:var(--ui-sub)}
+/* The result stage keeps one viewport-based size while neighboring images
+   load/unload. Their natural proportions only affect the contained pixels. */
+.editor-share .result-flow:not(.share-flow)>.result-mid{position:relative}
+.editor-share .result-flow:not(.share-flow)>.result-mid>.swiper{height:calc(var(--app-height,100vh) - 280px);flex:0 1 calc(var(--app-height,100vh) - 280px);min-height:0}
+.editor-share .result-flow:not(.share-flow)>.result-mid>.swiper .track,.editor-share .result-flow:not(.share-flow)>.result-mid>.swiper .slide{height:100%;min-height:0}
+.editor-share .result-flow:not(.share-flow)>.result-mid>.swiper .slide>img{width:100%;height:100%;max-height:100%;min-height:0;flex:none;object-fit:contain}
+/* Adding a completed collage must not shift the photo stage or page count. */
+.editor-share .result-flow:not(.share-flow) .editor-collage-status{position:absolute;right:20px;bottom:0;left:20px}
+.editor-share .choice-row{display:block;width:100%;min-height:48px;padding:12px 0;text-align:left;font-size:14px}
+/* Result and share use the same centered main action as the recipe footer. */
+.editor-share .result-footer.action-footer{display:grid;grid-gap:0 8px;gap:0 8px}
+.editor-share .result-footer.action-footer>*{margin:0}
+.editor-share .result-footer.action-footer .btn{min-width:0;font-size:14px;white-space:nowrap}

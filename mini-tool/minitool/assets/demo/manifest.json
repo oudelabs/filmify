@@ -1,0 +1,105 @@
+{
+  "schema": 1,
+  "edition": "open-source-demo",
+  "defaultId": "demo-identity",
+  "layout": "64^3; 8x8 blue tiles, red x / green y; encoded sRGB SDR",
+  "generator": "scripts/generate-demo-assets.py",
+  "styles": [
+    {
+      "id": "demo-identity",
+      "name": "恒等演示",
+      "sourceName": "恒等演示",
+      "stockCategory": "creative",
+      "blackAndWhite": false,
+      "lut": "assets/demo/identity.png",
+      "sha256": "5464808abf3b2fc6e42d47f4c5ad523331acf35b5d551c39cc5b8d1f19e59f5a",
+      "texture": {
+        "grain": 1,
+        "soft": 0,
+        "halation": 0
+      },
+      "origin": "original analytic demo",
+      "formula": "identity: (r,g,b)"
+    },
+    {
+      "id": "demo-warm",
+      "name": "暖色演示",
+      "sourceName": "暖色演示",
+      "stockCategory": "creative",
+      "blackAndWhite": false,
+      "lut": "assets/demo/warm.png",
+      "sha256": "23dd8eb524b83b9db3816babe0cb8bbe9e726b7d91186ed233fd2c5622958413",
+      "texture": {
+        "grain": 1,
+        "soft": 0,
+        "halation": 0
+      },
+      "origin": "original analytic demo",
+      "formula": "(r+.08*r*(1-r), g, b-.08*b*(1-b))"
+    },
+    {
+      "id": "demo-cool",
+      "name": "冷色演示",
+      "sourceName": "冷色演示",
+      "stockCategory": "creative",
+      "blackAndWhite": false,
+      "lut": "assets/demo/cool.png",
+      "sha256": "1ec21a4f5ebb30022eb6d63751cc4a77ab43852db02ee90af27f5bf6c64669cb",
+      "texture": {
+        "grain": 1,
+        "soft": 0,
+        "halation": 0
+      },
+      "origin": "original analytic demo",
+      "formula": "(r-.08*r*(1-r), g, b+.08*b*(1-b))"
+    },
+    {
+      "id": "demo-soft",
+      "name": "柔和演示",
+      "sourceName": "柔和演示",
+      "stockCategory": "creative",
+      "blackAndWhite": false,
+      "lut": "assets/demo/soft.png",
+      "sha256": "f171b7396ccc3e9be65f24bf8d9b1e18b5d067c62299145f22972e6239eb73e1",
+      "texture": {
+        "grain": 1,
+        "soft": 0,
+        "halation": 0
+      },
+      "origin": "original analytic demo",
+      "formula": ".06 + .88*channel"
+    },
+    {
+      "id": "demo-vivid",
+      "name": "对比演示",
+      "sourceName": "对比演示",
+      "stockCategory": "creative",
+      "blackAndWhite": false,
+      "lut": "assets/demo/vivid.png",
+      "sha256": "5aab1346a081846730efa11e34c862015ea0ee960a3196db71807c9007fb131a",
+      "texture": {
+        "grain": 1,
+        "soft": 0,
+        "halation": 0
+      },
+      "origin": "original analytic demo",
+      "formula": "1.15 saturation around encoded RGB luma; cubic contrast"
+    },
+    {
+      "id": "demo-mono",
+      "name": "黑白演示",
+      "sourceName": "黑白演示",
+      "stockCategory": "black-and-white",
+      "blackAndWhite": true,
+      "lut": "assets/demo/mono.png",
+      "sha256": "8c996f8c3d347f1af8099b8bbc549118ac049c72b5666ffbfb55b3a24be8135b",
+      "texture": {
+        "grain": 1,
+        "soft": 0,
+        "halation": 0
+      },
+      "origin": "original analytic demo",
+      "formula": "encoded RGB luma: .2126*r + .7152*g + .0722*b"
+    }
+  ]
+}

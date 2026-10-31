@@ -33,9 +33,9 @@ window.FilmifyCollageGrid=(function(){
     ctx.restore();
   }
   function drawFooter(ctx,label){
-    var D=window.FilmifyPrintDesign,r=D.fitRun(ctx,label||'',26,850),baseline=1519;
+    var D=window.FilmifyPrintDesign,r=D.fitRun(ctx,label||'',19.5,850),baseline=1519;
     ctx.save();D.draw(ctx,r,80,baseline,D.recipeColors(label||'',true),'left');
-    D.brand(ctx,1120,baseline+(r.descent-r.ascent)/2,26);ctx.restore();
+    D.brand(ctx,1120,baseline+(r.descent-r.ascent)/2,19.5);ctx.restore();
   }
   function ease(t){t=Math.max(0,Math.min(1,t));return t*t*(3-2*t);}
   function newCanvas(){
@@ -61,19 +61,16 @@ window.FilmifyCollageGrid=(function(){
   }
   /* 静态拼图(终帧构图) → JPEG Blob;imgs 为已解码小图(ImageBitmap/canvas/Image);
      等署名字体就绪再画,避免脚标闪变/回落字体 */
-  function composeStatic(imgs,label,seed){
-    return fontsReady().then(function(){
+  function composeStatic(imgs,label,seed,opts,guard){
+    return (opts&&opts.plainCaption?Promise.resolve():fontsReady()).then(async function(){
+      if(guard)guard();
       var L=layout(imgs.length,seed);
       var b=newCanvas(),ctx=b.ctx;
       paintBG(ctx);
       for(var k=0;k<imgs.length;k++)drawCell(ctx,imgs[L.cells[k].index],L.cells[k]);
-      drawFooter(ctx,label);
-      return new Promise(function(resolve,reject){
-        b.canvas.toBlob(function(blob){
-          b.canvas.width=b.canvas.height=1;
-          if(blob)resolve(blob);else reject(new Error('拼图合成失败'));
-        },'image/jpeg',0.92);
-      });
+      if(!opts||!opts.plainCaption)drawFooter(ctx,label);
+      try{return await window.FilmifyPrintDesign.encodeJPEG(b.canvas,'拼图合成失败',0.92,guard);}
+      finally{b.canvas.width=b.canvas.height=1;}
     });
   }
   function supported(){
@@ -87,29 +84,33 @@ window.FilmifyCollageGrid=(function(){
   }
   // 黑帧自检(与 live-wipe 同一防线):部分 WebView 声称支持 MP4 却录出全黑,
   // 录完回读中间帧亮度,异常按生成失败处理,由调用方回退纯图片分享。
-  function verifyFrames(blob){
-    return new Promise(function(resolve){
-      var url=URL.createObjectURL(blob);
+  function verifyFrames(source,diag){
+    var cancel;
+    var task=new Promise(function(resolve){
+      var url=source.url;
       var video=document.createElement('video');
-      video.muted=true;
+      video.muted=true;video.defaultMuted=true;video.preload='auto';
       /* 挂到 DOM 再解码回读(与 live-wipe 同理):部分 Android WebView 对未挂载的
          video 不做硬解,drawImage 全黑会被误判成黑帧录制 */
       video.setAttribute('playsinline','');
       video.style.cssText='position:fixed;left:-9999px;top:0;width:2px;height:2px;opacity:0;pointer-events:none;';
       document.body.appendChild(video);
       var settled=false,played=false;
-      function finish(pass){
+      function finish(pass,reason){
         if(settled)return;settled=true;clearTimeout(guard);clearTimeout(stall);
-        URL.revokeObjectURL(url);video.removeAttribute('src');
+        if(diag){diag.check=reason;diag.videoTime=video.currentTime;diag.readyState=video.readyState;}
+        video.onloadeddata=video.onseeked=video.ontimeupdate=video.onerror=null;
+        try{video.pause();}catch(error){}
+        video.removeAttribute('src');
         try{video.load();}catch(error){}
         if(video.parentNode)video.parentNode.removeChild(video);
-        resolve(pass);
+        source.release();resolve(pass);
       }
       /* 读当前帧判黑:全黑=录出黑帧(判失败),否则通过 */
       function probe(){
         try{
           var w=video.videoWidth,h=video.videoHeight;
-          if(!w||!h){finish(false);return;}
+          if(video.seeking||video.readyState<2||!w||!h)return;
           var probe=document.createElement('canvas');
           probe.width=64;probe.height=Math.max(1,Math.round(64*h/w));
           var g=probe.getContext('2d');
@@ -118,38 +119,46 @@ window.FilmifyCollageGrid=(function(){
           var sum=0,count=data.length/4;
           for(var i=0;i<data.length;i+=4)sum+=data[i]+data[i+1]+data[i+2];
           probe.width=probe.height=1;
-          finish(sum/(count*3)>6);
-        }catch(error){finish(false);}
+          var mean=sum/(count*3);if(diag)diag.mean=mean;
+          finish(mean>6,mean>6?'ok':'black-frame');
+        }catch(error){finish(false,'frame-read');}
       }
       /* 播放探测兜底(与 live-wipe 同理):iOS Safari 首次解码回读 blob 视频时
          只 seek 不 play 会静默挂起;muted+playsinline 的 play() 是放行路径 */
       function playFallback(){
         if(settled||played)return;played=true;
         video.onseeked=null;
-        var p=video.play();
-        if(p&&p.catch)p.catch(function(){finish(false);});
+        try{
+          var p=video.play();
+          if(p&&p.catch)p.catch(function(error){finish(false,'play-'+(error.name||'failed'));});
+        }catch(error){finish(false,'play-'+(error.name||'failed'));}
       }
-      var guard=setTimeout(function(){finish(false);},8000);
+      var guard=setTimeout(function(){finish(false,'decode-timeout');},8000);
       var stall=setTimeout(playFallback,2500);
-      video.onerror=function(){finish(false);};
+      video.onerror=function(){finish(false,'decode-'+(video.error&&video.error.code||'error'));};
       video.onloadeddata=function(){
-        try{video.currentTime=Math.max(0.1,Math.min(1.9,(video.duration||3)/2));}
+        // Once playback has started, a late loadeddata must not restart the stalled seek.
+        if(settled||played)return;
+        try{video.currentTime=Math.max(0.1,Math.min(1.9,(isFinite(video.duration)?video.duration:3)/2));}
         catch(error){playFallback();}
       };
       video.onseeked=probe;
       video.ontimeupdate=function(){
-        if(!played||settled)return;
+        if(!played||settled||video.seeking||video.readyState<2)return;
         var target=Math.max(0.3,Math.min(1.9,(isFinite(video.duration)?video.duration:3)/2));
         if(video.currentTime>=target){try{video.pause();}catch(error){}probe();}
       };
+      cancel=function(){finish(false,'cancelled');};
       video.src=url;
       try{video.load();}catch(error){}
     });
+    task.cancel=function(){if(cancel)cancel();};return task;
   }
   // 录制 4s 显影动图:negs/effs 为逐格已解码小图(底片/正片同序)。
   // Resolves {cover: JPEG Blob, video: MP4 Blob}; rejects with a user-facing message.
   function record(negs,effs,label,seed){
-    var type=supported();
+    var type=supported(),diag={kind:'collage',stage:'prepare',mime:type};
+    window.FILMIFY_LIVE_DIAG=diag;
     if(!type)return Promise.reject(new Error('当前环境不支持生成动图，可以选择其它分享方式'));
     if(document.hidden)return Promise.reject(new Error('请保持页面前台生成动图'));
     var b=newCanvas(),canvas=b.canvas,ctx=b.ctx;
@@ -160,8 +169,9 @@ window.FilmifyCollageGrid=(function(){
     var draw=painter(negs,effs,label,seed);
     return fontsReady().then(function(){return new Promise(function(resolve,reject){
       var recorder=null,stream=null,raf=0,timeout=0,startGuard=0,start=0,lastDrawT=-1;
-      var chunks=[],bytes=0,done=false,stopping=false;
+      var chunks=[],bytes=0,done=false,stopping=false,verification=null;
       function cleanup(){
+        if(verification)verification.cancel();
         cancelAnimationFrame(raf);clearTimeout(timeout);
         clearTimeout(startGuard);
         document.removeEventListener('visibilitychange',visibility);
@@ -174,8 +184,9 @@ window.FilmifyCollageGrid=(function(){
         if(canvas.parentNode)canvas.parentNode.removeChild(canvas);
         canvas.width=canvas.height=1;chunks=[];
       }
-      function fail(error){if(done)return;done=true;cleanup();reject(error);}
-      function leave(){fail(new Error('动图生成已取消（页面离开前台），可以重试'));}
+      function fail(error){if(done)return;done=true;diag.error=error.message;cleanup();reject(error);}
+      function unavailable(message){var error=new Error(message);error.liveShareUnavailable=true;return error;}
+      function leave(){var error=new Error('动图生成已取消（页面离开前台），可以重试');error.cancelled=true;fail(error);}
       function visibility(){if(document.hidden)leave();}
       function step(now){
         if(done||stopping)return;
@@ -183,7 +194,7 @@ window.FilmifyCollageGrid=(function(){
           var t=(now-start)/1000;
           /* 流采样率 24fps,按 ~30fps 节流绘制 */
           if(t-lastDrawT>=1/30||t>=DUR){draw(ctx,Math.min(t,DUR));lastDrawT=t;}
-          if(t>=DUR){stopping=true;recorder.stop();return;}
+          if(t>=DUR){stopping=true;diag.stage='stopping';recorder.stop();return;}
           raf=requestAnimationFrame(step);
         }catch(error){fail(error);}
       }
@@ -197,38 +208,48 @@ window.FilmifyCollageGrid=(function(){
             if(bytes>MAX_BYTES)fail(new Error('动图视频过大，请重试'));
           }
         };
-        recorder.onerror=function(){fail(new Error('动图录制失败，可以选择其它分享方式'));};
+        recorder.onerror=function(){fail(unavailable('动图录制失败，可以选择其它分享方式'));};
         recorder.onstop=function(){
           if(done)return;
           var actual=recorder.mimeType||type;
-          var blob=new Blob(chunks,{type:actual});
+          var blob=new Blob(chunks,{type:'video/mp4'});
+          diag.bytes=blob.size;diag.actualMime=actual;diag.stage='video-file';
+          if(stream)stream.getTracks().forEach(function(track){track.stop();});
           if(blob.size<100){fail(new Error('动图视频没有完整生成，请重试'));return;}
-          verifyFrames(blob).then(function(pass){
+          window.filmifyVideoSource(blob).then(function(source){
+            if(done){source.release();return;}
+            diag.stage='verify';diag.sourceType=source.kind;
+            verification=verifyFrames(source,diag);
+            return verification.then(function(pass){
             if(done)return;
-            if(!pass){fail(new Error('动图视频生成异常，可以选择其它分享方式'));return;}
+            if(!pass){fail(new Error('动图视频校验未完成（'+diag.check+'），可重试'));return;}
+            diag.stage='cover';
             draw(ctx,DUR); /* 封面 = 终帧(全部正片+脚标) */
             canvas.toBlob(function(coverBlob){
+              if(done)return;
               if(!coverBlob){fail(new Error('动图封面生成失败，请重试'));return;}
               done=true;clearTimeout(timeout);
-              var result={cover:coverBlob,video:blob};
+              var result={cover:coverBlob,video:blob,videoPath:source.filePath};diag.stage='ready';
               cleanup();
               resolve(result);
             },'image/jpeg',0.94);
-          });
+            });
+          }).catch(fail);
         };
-        recorder.onstart=function(){start=performance.now();raf=requestAnimationFrame(step);};
+        recorder.onstart=function(){diag.stage='recording';start=performance.now();raf=requestAnimationFrame(step);};
         document.addEventListener('visibilitychange',visibility);
         window.addEventListener('pagehide',leave);
         timeout=setTimeout(function(){
           var stage=stopping?'编码器停止无响应':(start?'录制中断':'编码器启动无响应');
-          fail(new Error('动图生成超时（'+stage+'），请重试'));
+          if(diag.stage==='video-file'||diag.stage==='verify'||diag.stage==='cover')fail(new Error('动图生成超时（'+diag.stage+'），请重试'));
+          else fail(unavailable('动图生成超时（'+stage+'），请重试'));
         },12000+DUR*1000);
         /* 启动看门狗(与 live-wipe 同款):mp4 编码管线死锁的 Android WebView 上
            3s 快速判败回退图片分享,不挂 16s */
         startGuard=setTimeout(function(){
-          if(!start)fail(new Error('当前设备无法生成动图视频'));
+          if(!start)fail(unavailable('当前设备无法生成动图视频'));
         },3000);
-        recorder.start(250);
+        diag.stage='starting';recorder.start(250);
       }catch(error){fail(error);}
     });},function(error){if(canvas.parentNode)canvas.parentNode.removeChild(canvas);canvas.width=canvas.height=1;throw error;});
   }

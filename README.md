@@ -1,37 +1,47 @@
-# Filmify
+# Filmify · 开源演示版
 
-Filmify 公开项目集合。当前提供数字胶片网页工具，Agent Skill 目录预留。
+当前公版源码版本：`2.0.8-demo.1`。查看 [版本记录](CHANGELOG.md) 和 [版本说明](RELEASE_NOTES.md)。本次通过 `main` 分支更新源码，不创建新标签或 GitHub Release，也不上传构建附件。
 
-| 目录 | 内容 | 状态 |
+在本机处理照片的数字冲印编辑器：照片导入、负片显示、配方、原尺寸成片、GPU／CPU 退路、颗粒、柔光、辉光和四种静态分享样式。
+
+本版用六张原创数学演示色表替代产品胶卷 LUT，默认「恒等演示」。负片显示和印相也使用独立数学演示；不包含产品色表、负片预览表、印相差表或这些表的压缩副本与重建数据，不代表实体胶卷／相纸匹配。
+
+## 产品版本与本仓库
+
+| 内容 | 独立分发的产品版本 | 本仓库的开源演示版 |
 | --- | --- | --- |
-| [mini-tool](mini-tool/README.md) | 网页工具源码、资源、构建、测试和文档 | Beta；版本与设备验证范围见项目说明 |
-| [skill](skill/README.md) | 后续 Agent Skill | 预留，暂无可安装内容 |
+| 胶卷颜色 | 42 款产品色表 | 6 款原创公式演示：恒等、暖色、冷色、柔和、对比、黑白 |
+| 负片预览／印相 | 产品预览表及参考相对印相 | 独立数学负片与暖纸／冷纸／灰阶演示 |
+| 照片与配方流程 | 照片导入、原尺寸冲印、颗粒／柔光／辉光及静态分享 | 提供上述主要流程，颜色与印相效果由演示资源决定 |
+| 自备 LUT | 由产品配置决定 | 支持显式本机导入，普通构建默认排除 |
 
-## 构建网页工具
+本仓库提供可运行的编辑器代码与演示资源，不是产品 42 款胶卷效果资源包；默认构建不会下载、采样或还原这些产品色表。Fotufilm 颗粒所需的 CC BY-SA 材料另按原许可提供，具体范围见 [资源边界](mini-tool/docs/asset-policy.md)。
 
-需要 Node.js 22+、Python 3.10+ 和支持 WebGL2 的浏览器。在仓库根目录执行：
+冲印计算在本机完成。保存、分享由用户主动发起，通过浏览器下载或宿主接口处理；用户确认分享到平台时，照片的后续传输遵循相应平台流程。
+
+## 本地运行
+
+| 目录 | 内容 |
+| --- | --- |
+| [mini-tool](mini-tool/README.md) | 当前成片编辑器、演示资源生成器、构建和测试 |
+| [skill](skill/README.md) | 预留；没有可安装的 Agent Skill |
+
+需要 Node.js 22+、Python 3.10+，在仓库根目录执行：
 
 ```sh
 cd mini-tool
 npm ci
-npx playwright install chromium
-npm run build
-npm run dev
+npx playwright install chromium webkit
+npm run verify:release
+npm run dev -- --host 127.0.0.1
 ```
 
-在同一目录运行 `npm test`、`npm run verify:release` 完成桌面验证。
-构建产物位于 `mini-tool/dist/`；详细说明见 [构建与复现](mini-tool/docs/public-build.md)。
-桌面门禁不能替代手机及小红书宿主验证，已知问题见 [运行状态](mini-tool/docs/public-runtime-status.md)。
+打开终端显示的本地地址。开发依赖仅用于构建和检查；生成的网页包离线运行。构建步骤会从公开公式重建全部演示色表，无需任何产品文件或额外色彩目录。
 
-## 许可与来源
+默认构建只含演示色表。[构建与自备 LUT](mini-tool/docs/public-build.md) 说明如何显式加入本机资源；不要把自备色表和生成的本地包提交到仓库。
 
-项目代码采用 [GPL-3.0-only](LICENSE)。网页工具的模型衍生数据采用 CC BY-SA 4.0，
-字体采用 SIL OFL 1.1；对应许可、版权及上游出处见 [网页工具许可说明](mini-tool/README.md#许可证与署名)
-和 [NOTICE](mini-tool/styles/NOTICE.md)。第三方资产遵循各自随附许可。
-界面资源与自有预览表的来源状态见 [资源清单](mini-tool/docs/public-assets.md)。
+代码为 [GPL-3.0-only](LICENSE)。Fotufilm 上游代码为 Apache-2.0，颗粒所需的 Portra 400 材料和相关派生参数按 CC BY-SA 4.0 单独标注；字体按 SIL OFL 1.1。保留 Spektrafilm 历史代码改编署名。[资源边界](mini-tool/docs/asset-policy.md) 和随附第三方许可列出具体范围。品牌和厂商名称归各自权利人所有，不表示隶属或背书。
 
-## 源码清单
+`PUBLIC_MANIFEST.json` 固定本次导出的源码文件、大小和 SHA-256，不含清单自身、依赖安装、测试报告和构建输出。早期 `v1.0.1` 的历史与既有许可不因这次升级撤回；旧模拟器资源不再作为当前入口依赖。
 
-`PUBLIC_MANIFEST.json` 记录本次整理的文件路径、大小和 SHA-256，路径相对于仓库根目录。
-清单不包括自身、本地导出标记、依赖安装和构建产物；后续修改源码后需重新生成清单。
-本地候选目录不含原工作仓库的 Git 历史、研究照片和内部资料。
+桌面检查不代替平台验收。HEIF 依赖浏览器原生解码，输出为 SDR；大照片受设备内存和 Canvas 能力限制。用于小红书前，仍须使用当前上传页口令及对应规范，完成平台模拟器和 iOS／Android 同包验证。

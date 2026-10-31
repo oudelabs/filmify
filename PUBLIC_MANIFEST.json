@@ -1,8 +1,13 @@
 [
   {
     "path": ".gitignore",
-    "bytes": 523,
-    "sha256": "a8206bae02caa1388f65b0af290af663ad1d26d0eef55aa2a749746fa20e75fc"
+    "bytes": 193,
+    "sha256": "54c3890be1e30ba191e83e969cb486611f4c1a385bbd846f58c31a7662e242c3"
+  },
+  {
+    "path": "CHANGELOG.md",
+    "bytes": 1661,
+    "sha256": "84770c5be74e0e06e605f53eabf95de619f2a6118106cc106e9326f47b7c0b5a"
   },
   {
     "path": "LICENSE",
@@ -11,8 +16,13 @@
   },
   {
     "path": "README.md",
-    "bytes": 1697,
-    "sha256": "d81e8090dcc80f12571e305cc5da83abacc725338033044123523959166beeff"
+    "bytes": 3585,
+    "sha256": "68f1840258a1471f0adbf195da06ab438193d56cfdfbfc952982b76e4420e629"
+  },
+  {
+    "path": "RELEASE_NOTES.md",
+    "bytes": 3101,
+    "sha256": "8ac4bac53f47d1de37c13a5846361efdddb4d9a0a23ee3ca90696c38884d36a2"
   },
   {
     "path": "mini-tool/LICENSE",
@@ -21,33 +31,23 @@
   },
   {
     "path": "mini-tool/README.md",
-    "bytes": 5487,
-    "sha256": "dd3ab61bdebd67f96e5da1bf235d1ee1b6d143c37ede6613550591b4f696779a"
+    "bytes": 2476,
+    "sha256": "758c788883d80f247c53d4f22649446bfcb72f7aa598873abdfcdf402234626b"
   },
   {
-    "path": "mini-tool/docs/public-assets.md",
-    "bytes": 1674,
-    "sha256": "04ed4da2769535906a094e414378488534f1b8cf866b29ed42291caeb2ed6f60"
+    "path": "mini-tool/docs/asset-policy.md",
+    "bytes": 2209,
+    "sha256": "82089d96e153cbd5ffac387a24ba053e787c7ad5147ac3f0da899d4467e6b9a4"
   },
   {
     "path": "mini-tool/docs/public-build.md",
-    "bytes": 6027,
-    "sha256": "6ce4a98f8c32934cba767d780684b3e9c9e423dbcc554124c5841e3ef6280cd9"
-  },
-  {
-    "path": "mini-tool/docs/public-runtime-status.md",
-    "bytes": 2512,
-    "sha256": "78173c543714109a9d2d91d1d0eaae169c6587be6b0ef749f303d170afe12031"
-  },
-  {
-    "path": "mini-tool/docs/shared-lut-design.md",
-    "bytes": 2396,
-    "sha256": "4773735003d824920c5b1db803b0b78acd8038b5921851542f547f415a5e5d74"
+    "bytes": 2802,
+    "sha256": "8501cc37831a2e2ca240c911f6921f50fbe0f05ed231bfd705ade61410ede055"
   },
   {
     "path": "mini-tool/minitool/app.js",
-    "bytes": 77197,
-    "sha256": "cd289cb4b888f334d5661c204939102b1663ba5ace7dc1859a770e12078062bc"
+    "bytes": 41089,
+    "sha256": "16f570896c24635f49b56450064b8708c7fcab06c9f29152f80d9924f8568b58"
   },
   {
     "path": "mini-tool/minitool/assets/bg-mottle.png",
@@ -70,14 +70,59 @@
     "sha256": "516bf7fbfdbd0f0e4f50ade6a9127ad83ac7a54370bad6cf70794554569e9c4e"
   },
   {
+    "path": "mini-tool/minitool/assets/clothesline-clips.png",
+    "bytes": 1328291,
+    "sha256": "9176b9b30d9d8d1c75de92b6fb5ae74a4da3ff71f81565f5fbde8444b9c5e7d8"
+  },
+  {
+    "path": "mini-tool/minitool/assets/demo/cool.png",
+    "bytes": 2829,
+    "sha256": "1ec21a4f5ebb30022eb6d63751cc4a77ab43852db02ee90af27f5bf6c64669cb"
+  },
+  {
+    "path": "mini-tool/minitool/assets/demo/identity.png",
+    "bytes": 2777,
+    "sha256": "5464808abf3b2fc6e42d47f4c5ad523331acf35b5d551c39cc5b8d1f19e59f5a"
+  },
+  {
+    "path": "mini-tool/minitool/assets/demo/manifest.json",
+    "bytes": 3084,
+    "sha256": "eb1e8551ce0cfefa79cce7dde5fd5ab97a3f59c1a6c6c8ef265a63cf2ad81960"
+  },
+  {
+    "path": "mini-tool/minitool/assets/demo/mono.png",
+    "bytes": 9473,
+    "sha256": "8c996f8c3d347f1af8099b8bbc549118ac049c72b5666ffbfb55b3a24be8135b"
+  },
+  {
+    "path": "mini-tool/minitool/assets/demo/soft.png",
+    "bytes": 2859,
+    "sha256": "f171b7396ccc3e9be65f24bf8d9b1e18b5d067c62299145f22972e6239eb73e1"
+  },
+  {
+    "path": "mini-tool/minitool/assets/demo/vivid.png",
+    "bytes": 110636,
+    "sha256": "5aab1346a081846730efa11e34c862015ea0ee960a3196db71807c9007fb131a"
+  },
+  {
+    "path": "mini-tool/minitool/assets/demo/warm.png",
+    "bytes": 2836,
+    "sha256": "23dd8eb524b83b9db3816babe0cb8bbe9e726b7d91186ed233fd2c5622958413"
+  },
+  {
     "path": "mini-tool/minitool/assets/logo-mark-t-dark.png",
     "bytes": 52629,
     "sha256": "7be4893e7d3c6792072a2a0d826483efafaa592022cafb564678ab21db294826"
   },
   {
-    "path": "mini-tool/minitool/assets/negative-picker-lut32.png",
-    "bytes": 5557,
-    "sha256": "7d62b56ea6ce4730015148db4d62357140c0af6ffef047cd76b2766ba0a0bc7f"
+    "path": "mini-tool/minitool/assets/runtime-resources.json",
+    "bytes": 367,
+    "sha256": "b5380c2f3127da6d50043b305e881009db125952a749cbf4e56772e25027de6b"
+  },
+  {
+    "path": "mini-tool/minitool/assets/third-party-licenses.txt",
+    "bytes": 72914,
+    "sha256": "e4a00f8f0f33472109205420acd924aec54cbf2bcfa2b58063a4ba1d4dc9cc93"
   },
   {
     "path": "mini-tool/minitool/assets/working-sign.png",
@@ -85,24 +130,34 @@
     "sha256": "8f0198e7c66aef4f3091330102752dc98e44b1fb7c4e7d58d5141380f5eb1803"
   },
   {
+    "path": "mini-tool/minitool/browser-save.js",
+    "bytes": 859,
+    "sha256": "0e636783a168ba1111d97fbc68fd1b7affcd42cef4e8c94ab1e58144817b5b1e"
+  },
+  {
+    "path": "mini-tool/minitool/clothesline.js",
+    "bytes": 8196,
+    "sha256": "218565b5b524b6e4bc14277db5cdcd5015514654b7738cecf6b364dcf181a404"
+  },
+  {
     "path": "mini-tool/minitool/collage-compare.js",
-    "bytes": 1594,
-    "sha256": "3ae912d9b2d75944da43e3d2ffe4cb8848f963bf06187262003ceb7933184963"
+    "bytes": 2160,
+    "sha256": "7750a9edd3dc79b302e268d99fcd6c4f61c5db8913efecc6658ee343290fe760"
   },
   {
     "path": "mini-tool/minitool/collage-grid.js",
-    "bytes": 13444,
-    "sha256": "2cc31168122a4d8f9fbf6a6d19740e78e90fdd188a5aaa5fbdce1fcf11e54598"
+    "bytes": 15421,
+    "sha256": "a09a3b823b609a602f308b6323feb1799aafb39c86313e02ab11f978cae4ebff"
   },
   {
-    "path": "mini-tool/minitool/engine.js",
-    "bytes": 45827,
-    "sha256": "2b5f438007f60058c6e362c107e233dda93854619b9427722ff602ccd858a331"
+    "path": "mini-tool/minitool/editor-share.css",
+    "bytes": 1840,
+    "sha256": "42757510d1a3f3fe304baf36f814ca4ee3386a6f6a831c62ecef32814d1c883a"
   },
   {
-    "path": "mini-tool/minitool/exposure.js",
-    "bytes": 4678,
-    "sha256": "d8fc7dd4d04d2284f68724f70f6e8fadf0c493520366946606cf4242f3488698"
+    "path": "mini-tool/minitool/editor-share.js",
+    "bytes": 42927,
+    "sha256": "ed709c77029a1de1f24cb0ac2c5151887c53442cbe40376a5e4fc5ff426eacce"
   },
   {
     "path": "mini-tool/minitool/flex-gap.js",
@@ -110,74 +165,139 @@
     "sha256": "487307742fae9e3f23548c048f6be80beaf5be6673e48ae10177e37494866e19"
   },
   {
+    "path": "mini-tool/minitool/grain-material-data.js",
+    "bytes": 1835,
+    "sha256": "a91c360f58329f6e25722df661cc5f671bcf6f28065901d151a22f010e1b3867"
+  },
+  {
+    "path": "mini-tool/minitool/grain-material.js",
+    "bytes": 12562,
+    "sha256": "b3cd217cbde609253a19668db3311976a9d4919550d0cec1ccb8978bb3103e88"
+  },
+  {
+    "path": "mini-tool/minitool/grain-material.png",
+    "bytes": 47157,
+    "sha256": "dacb2a515fe9551750d9a511b6a32957aa90cd84d44a6712a9e0d76c648e6621"
+  },
+  {
+    "path": "mini-tool/minitool/grain.js",
+    "bytes": 16762,
+    "sha256": "2dfe798c14fe09c3f54cf324ed8360ec57ca76784644a3c62771c8b67dcfaf5c"
+  },
+  {
+    "path": "mini-tool/minitool/halation-data.js",
+    "bytes": 12016,
+    "sha256": "51e2c24292ebda688c687b809ff0a992c57f8ff65f99725c063dc29a5b1f81ee"
+  },
+  {
     "path": "mini-tool/minitool/host.js",
-    "bytes": 3749,
-    "sha256": "ec65f9ba2c23a39871c1a4bb02aff5e23bc7c8bf0232c85118d712afad95a908"
+    "bytes": 6142,
+    "sha256": "4cea45b8457032188c1164a467fba88c5c775c0fac3d2ba0f4ccd7b5df64b4f5"
   },
   {
     "path": "mini-tool/minitool/index.html",
-    "bytes": 1720,
-    "sha256": "aa50d76c5403db1390b17f5f21a5844ff1821d2e522e7a5aab522a8d9b345e43"
-  },
-  {
-    "path": "mini-tool/minitool/live-wipe.js",
-    "bytes": 13440,
-    "sha256": "ef86a7e3d5daa58c83b50d481795c30fa523e410c8b91bfa17559674d99345ad"
-  },
-  {
-    "path": "mini-tool/minitool/materials.js",
-    "bytes": 8826,
-    "sha256": "ffe3c8888e30aa8069931d37c12aa80de5f5065888e715d04f41f0fe4f9e38a2"
-  },
-  {
-    "path": "mini-tool/minitool/mobile-film.js",
-    "bytes": 100733,
-    "sha256": "b882ea1ba8792b8b7816e8025c41d17a5889db4b8b51b76c6558ccbfcd8d1dd5"
-  },
-  {
-    "path": "mini-tool/minitool/mobile-optics.js",
-    "bytes": 12381,
-    "sha256": "fdefee06cb0b4de7773b883c1ed1cb41416b5ff49a895d788f650f7ff0359c39"
-  },
-  {
-    "path": "mini-tool/minitool/native-film.js",
-    "bytes": 13223,
-    "sha256": "55a747948fcc8cb60bc82b0b67be12f6ca6a2e5612d47eff6baaceb682e1e941"
+    "bytes": 1942,
+    "sha256": "420d57116731bc9d38a83ab7a9ec1739cc929a9fdb9b91f8f3c9bb2fbe17f3af"
   },
   {
     "path": "mini-tool/minitool/negative-preview.js",
-    "bytes": 8428,
-    "sha256": "f8da7348253fa5f270cd29d46337ca48eef50ab0a0c94b4282483bd0a5457c42"
+    "bytes": 2608,
+    "sha256": "2601e08c578c79686140fc86de29bd9a0f773181cfb8b55171ef5526f33134e0"
+  },
+  {
+    "path": "mini-tool/minitool/paper-adaptation.js",
+    "bytes": 3131,
+    "sha256": "71ab83b524a7841ab80d01c158ccc143c77a33e005c862c2e9fce61b0d0c8bac"
+  },
+  {
+    "path": "mini-tool/minitool/pixel-color.js",
+    "bytes": 18339,
+    "sha256": "0c197eb4233a6bb48c716120bded646d9fb3b0fa0433bf9216d1b2b815d78dc6"
+  },
+  {
+    "path": "mini-tool/minitool/pixel-encode.js",
+    "bytes": 8399,
+    "sha256": "571350b96b00ab2347cbdae009d107f4309d5ee3385fb1bd66f01ece7b44667b"
+  },
+  {
+    "path": "mini-tool/minitool/pixel-render.js",
+    "bytes": 16323,
+    "sha256": "efd477f8a0e6eb255622b592bfc2e6c6b33cb5b4bbf1e81a48c5a2b27f9057ef"
+  },
+  {
+    "path": "mini-tool/minitool/pixel-work.js",
+    "bytes": 7814,
+    "sha256": "8ead374710e05893e852b47807240ff0c409fd16cdcc88a55fde47fd7802ef29"
   },
   {
     "path": "mini-tool/minitool/print-design.js",
-    "bytes": 7248,
-    "sha256": "d0d2880904f9d129bb537c251b5105dae24bae0d3479076764a0ba56d29e9560"
+    "bytes": 9819,
+    "sha256": "c5af726aa855d058a192accf41150ba2a3cc85a2c6447a3af6dc4cb77ee195a7"
+  },
+  {
+    "path": "mini-tool/minitool/recipe-config.js",
+    "bytes": 8389,
+    "sha256": "8d25277ed5ad8f1e5b09519474b8a6b17cd9501ea6c5d1230cbfa65e1939e420"
+  },
+  {
+    "path": "mini-tool/minitool/standard-cpu.js",
+    "bytes": 13319,
+    "sha256": "4f4166e94cdb2f9de36f6e0584ab2156039d4247539c207f98d3ba8fd61d975e"
+  },
+  {
+    "path": "mini-tool/minitool/standard-data.js",
+    "bytes": 1500,
+    "sha256": "da083bd5e8c4454a04e39d47241f576c8e8f6fb542267724fc104ef5ea33384f"
+  },
+  {
+    "path": "mini-tool/minitool/standard-glsl.js",
+    "bytes": 9101,
+    "sha256": "c90016a35631a0b961b5232f65cf8fe1b6c12e835feb8bb85de4aa52daa378a3"
+  },
+  {
+    "path": "mini-tool/minitool/standard-renderer.js",
+    "bytes": 12212,
+    "sha256": "b5f05f13b0bbf9dd72e84ecb1a9210d8bb783d2864bd5fb426357de6314a34dd"
   },
   {
     "path": "mini-tool/minitool/studio.css",
-    "bytes": 21222,
-    "sha256": "fc1215f28110ecca9b65636b1d39a27168631680159dc0a2ea3f4abbb2c58059"
+    "bytes": 44642,
+    "sha256": "0d0b10d3dad72a20d00c6e67349242cc0c168f2748f6c6d61adcf7f1b0426d2d"
+  },
+  {
+    "path": "mini-tool/minitool/style-config.js",
+    "bytes": 1812,
+    "sha256": "4e444af3d6af2b586ad637dcba39d5ce4042e0d78f14bdae897ab0830f2899a1"
+  },
+  {
+    "path": "mini-tool/minitool/texture-engine.js",
+    "bytes": 60684,
+    "sha256": "3a2fdfaf2df5613ce763fcb0cec9d1bc0a3b1769cbd25ece4fca154bb43fea72"
+  },
+  {
+    "path": "mini-tool/minitool/texture-halation.js",
+    "bytes": 4015,
+    "sha256": "226d274822c8560e1cd802fe205a6f9848b78436f2c9a763cd6f1bee87e11016"
+  },
+  {
+    "path": "mini-tool/minitool/texture-optics.js",
+    "bytes": 45199,
+    "sha256": "3ffdf4f8a3e18c2e9d73fee510c05c87dabde32e58663f3ab3a1588a2a6e059a"
   },
   {
     "path": "mini-tool/minitool/yield.js",
-    "bytes": 823,
-    "sha256": "0a2809dd029a464d730f19ef11e2531e38c3837aeac3109edc6fda70eba971a7"
+    "bytes": 1470,
+    "sha256": "61565d0ab79bb322c322eb5aeb9bd12ca5e62656b62e62145ebd06368e914fe0"
   },
   {
     "path": "mini-tool/package-lock.json",
-    "bytes": 1225,
-    "sha256": "50ae65a403ab7f600c84316136677cae099d06fb4c7fb375580c0a82af4d5b85"
+    "bytes": 1249,
+    "sha256": "92d1e181fc64f3eecf0dc6578277f4606dad3dc6750369e5da598fd974cc1d0d"
   },
   {
     "path": "mini-tool/package.json",
-    "bytes": 762,
-    "sha256": "9156c15c99ba2e7f95454f498cc0100eda33297aaead5f439a4d00e25dd9ab67"
-  },
-  {
-    "path": "mini-tool/requirements-bake.txt",
-    "bytes": 364,
-    "sha256": "fc76eb80bb3e5522d045a04b28451ec7e5366da154354a4c1ab72959053d16be"
+    "bytes": 1710,
+    "sha256": "0eacf67732d257786a8342ba03487daf79b56554f75b75b13229d3f76974656f"
   },
   {
     "path": "mini-tool/scripts/audit-artifact.py",
@@ -185,79 +305,29 @@
     "sha256": "62ff11eae1d5bb566a6f74b0fa102fe2eb3ffe982b87596aca2f93485cc9de21"
   },
   {
-    "path": "mini-tool/scripts/bake-film-stocks.py",
-    "bytes": 12616,
-    "sha256": "d02c434b4e16463996caca1684674590234d0087a5e6b0ab9707c439e6a55024"
-  },
-  {
-    "path": "mini-tool/scripts/bake-mobile-film.py",
-    "bytes": 14834,
-    "sha256": "dc520c9648daef2a730f7b9bd519656d6fb1fd9c37e39571afde9e6c6d101ce1"
-  },
-  {
-    "path": "mini-tool/scripts/bake-native-film.py",
-    "bytes": 9204,
-    "sha256": "27edd6dafef9c023c391885b66b4b8f814a1112278eedee97bf62117f09e0c53"
-  },
-  {
-    "path": "mini-tool/scripts/bake-shared-print.py",
-    "bytes": 3156,
-    "sha256": "1d2a8b082122c11d7d122737522f7dce43b1ad59abe600e80c647110c56e7467"
-  },
-  {
-    "path": "mini-tool/scripts/build-caption-font.py",
-    "bytes": 1617,
-    "sha256": "7bc9eee16fea5b1e2200289eb4c0085cbb7d906146dc9deb88da003dd41f384f"
-  },
-  {
     "path": "mini-tool/scripts/build-minitool.py",
-    "bytes": 26063,
-    "sha256": "e74a866ca34930c89c51b824812ffadab85e16b76dfc4d965740e288f5f0df0c"
-  },
-  {
-    "path": "mini-tool/scripts/build-shared-prints.py",
-    "bytes": 4313,
-    "sha256": "c2fbc00e0748159bc0e360a1d8da64f7d477513e4a7f38a13040ca19f973b7e1"
-  },
-  {
-    "path": "mini-tool/scripts/build-shared-scans.py",
-    "bytes": 3122,
-    "sha256": "853e026730b2dd5ed72cbdcbd6c511de70e25b06a8c82aab8916f1a01821ce1b"
-  },
-  {
-    "path": "mini-tool/scripts/calibrate-grain-scales.cjs",
-    "bytes": 1685,
-    "sha256": "1a053f48c8c07da0fdbde752e6d480dcdd9b2b4db84b5fbe20a92b6fb518f266"
-  },
-  {
-    "path": "mini-tool/scripts/calibrate-grain-scales.py",
-    "bytes": 3873,
-    "sha256": "f292511277df2dd73b1d464597500ba3427b16e8cb32abe68b26b139afd1c7fe"
-  },
-  {
-    "path": "mini-tool/scripts/calibrate-grain.cjs",
-    "bytes": 7667,
-    "sha256": "e2b6cf919eb10a82113f7998439325e714ac0cd9e5bb7713b76286de285fa0a1"
+    "bytes": 6504,
+    "sha256": "acd6f039924b53c6cb6c4f1f3a75bce035e2be1eadfd219afd26197f35bdb60f"
   },
   {
     "path": "mini-tool/scripts/dev-server.js",
-    "bytes": 3410,
-    "sha256": "01e8743a9228f6c8fc2bb68b11f06b5b46c57ef75fff22655c1ddb9f7a35baaf"
+    "bytes": 4094,
+    "sha256": "f0403812e4e844c256c8a8fd982d8a382b320cb8e3641d9d3ce9a589af74c0dd"
   },
   {
     "path": "mini-tool/scripts/dist-smoke-check.cjs",
-    "bytes": 3618,
-    "sha256": "f77cb96a3c379a1045b1b517d10b7c2d1fe16329448c78c2650edbb746e89ecc"
+    "bytes": 3145,
+    "sha256": "7e8e9dbd7ca38f608a222bc23d86260a47f449ad60a5a8da0460c7ee08ebacac"
   },
   {
-    "path": "mini-tool/scripts/dist-smoke-page.html",
-    "bytes": 4948,
-    "sha256": "d930326a362de4b4bdf57485fe3f0181618a348bb0b87ed3e202c4febd309d56"
+    "path": "mini-tool/scripts/generate-demo-assets.py",
+    "bytes": 6297,
+    "sha256": "fb709c66896cb6938a5ce02d9c83aecc8d9c14368f06b159138055d5e37159f9"
   },
   {
-    "path": "mini-tool/scripts/grain-kernel-fit.cjs",
-    "bytes": 5094,
-    "sha256": "fe8e48f18203d5093cbd4941cafcc8915b6ddbc3f0155f4d96a0e57ceab85621"
+    "path": "mini-tool/scripts/import-lut.py",
+    "bytes": 2808,
+    "sha256": "b055dff5d86b51c96b1ce8f8553b7197c04907918351a6497161cc93d36d42ab"
   },
   {
     "path": "mini-tool/scripts/launch-browser.cjs",
@@ -265,668 +335,93 @@
     "sha256": "17e89a1c4fc096c6f3b3ec61a9d9e5539271a411096d52d2693721288d6f83e9"
   },
   {
+    "path": "mini-tool/scripts/numeric_lut_png.py",
+    "bytes": 7737,
+    "sha256": "d4a419972abadfd16178e435443b5f992510f2170b1ebf255af1d68c5834627e"
+  },
+  {
     "path": "mini-tool/scripts/preview/index.html",
     "bytes": 6081,
     "sha256": "6cf971279b2082f221d79eac5ef4b2a0b5a90a08702c07d7b34f1e3b07e5ae22"
   },
   {
-    "path": "mini-tool/scripts/rebake-mobile-raw.py",
-    "bytes": 3925,
-    "sha256": "1d6b5b8c40e0311b96fd35e8507e2f42a584acddbd4809d4a97ec79ac3818c51"
+    "path": "mini-tool/scripts/verify-public-browser.cjs",
+    "bytes": 13541,
+    "sha256": "56410d3d84046308a9203ba7414d0155598d5a6a0c2e1a7a0606f0546ced662b"
   },
   {
-    "path": "mini-tool/scripts/rebuild-shared-luts.py",
-    "bytes": 2655,
-    "sha256": "cc3edb48f1b7760f9b0c045d59fd6187c0ae82c882e60f8e224cb3736fb0f764"
+    "path": "mini-tool/scripts/verify-public.cjs",
+    "bytes": 1255,
+    "sha256": "de730db11bf12ead81155dc7f5a302d8b52e73f0ecc3eebf902a5d68d186fe2f"
   },
   {
-    "path": "mini-tool/scripts/runtime-stock-metadata.json",
-    "bytes": 2172,
-    "sha256": "983bd5c074e12552d2d935792d58256fe57b7422bb4d18bdd81b0325bf60fb3b"
-  },
-  {
-    "path": "mini-tool/scripts/stamp-mobile-lut-hashes.py",
-    "bytes": 2100,
-    "sha256": "3c2e42b6121281b0d567517d86c5a2c49aeba819626b09fa8ad137b32acf4b5d"
-  },
-  {
-    "path": "mini-tool/scripts/verify-live-share.cjs",
-    "bytes": 8223,
-    "sha256": "362b35114c38409639f4369086ca3d6218d88eba4105d02bdb98f71213e7e8ef"
-  },
-  {
-    "path": "mini-tool/scripts/verify-release.cjs",
-    "bytes": 7152,
-    "sha256": "3975bf2216af6f461637d7046bf8e1f1a64ecbdf394dd6ae7d140d34411b31d1"
-  },
-  {
-    "path": "mini-tool/scripts/verify-v4-ui.cjs",
-    "bytes": 6527,
-    "sha256": "55b22ac9bbbcc2b56a0e86dd32eff0a7aeb8db21a618118ba57165b1eddc7fe6"
-  },
-  {
-    "path": "mini-tool/styles/NOTICE.md",
-    "bytes": 2646,
-    "sha256": "8c2b665c60f9a897f5b08fd489059ea29122a298e114b3be037380ff9c4f0da4"
-  },
-  {
-    "path": "mini-tool/styles/SPEKTRAFILM_CODE_LICENSE.txt",
-    "bytes": 35149,
-    "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
-  },
-  {
-    "path": "mini-tool/styles/SPEKTRAFILM_LICENSE.txt",
-    "bytes": 23677,
-    "sha256": "76d629501783ae52e8d63aee1e054c1e1a9713b9fe7d36fb306e25b1d14b24e9"
-  },
-  {
-    "path": "mini-tool/styles/grain-stats.js",
-    "bytes": 319926,
-    "sha256": "7c9977acf8af79c4ebfd79206535691a75fc53dedf828340922e97c98bbac80d"
-  },
-  {
-    "path": "mini-tool/styles/luts/c200-density.png",
-    "bytes": 274987,
-    "sha256": "4a0541d9e3779dda8e051eba15189f9ce99782cdc5e539e5ecce8b22124246ef"
-  },
-  {
-    "path": "mini-tool/styles/luts/c200-mobile-raw.png",
-    "bytes": 174127,
-    "sha256": "7bf4937e76dd09921a2981373de719b8f700b33b81d7232d8360673e9df9e4db"
-  },
-  {
-    "path": "mini-tool/styles/luts/c200-raw.png",
-    "bytes": 174127,
-    "sha256": "7bf4937e76dd09921a2981373de719b8f700b33b81d7232d8360673e9df9e4db"
-  },
-  {
-    "path": "mini-tool/styles/luts/doublex-density.png",
-    "bytes": 1159,
-    "sha256": "969d1d962477bc7c2c24307afec3b5abb294898a367fcfa668da18e3a1aaf1c4"
-  },
-  {
-    "path": "mini-tool/styles/luts/doublex-mobile-raw.png",
-    "bytes": 88498,
-    "sha256": "f783aa9cbea7c29f620df033495245643c8b249930151d1106d80fdd6eff6268"
-  },
-  {
-    "path": "mini-tool/styles/luts/doublex-raw.png",
-    "bytes": 88498,
-    "sha256": "f783aa9cbea7c29f620df033495245643c8b249930151d1106d80fdd6eff6268"
-  },
-  {
-    "path": "mini-tool/styles/luts/ektachrome-density.png",
-    "bytes": 173871,
-    "sha256": "2eb12825ef84c4d7a14908d782f8186725f1b1c65b1bcad6b5296a303c8a4bc9"
-  },
-  {
-    "path": "mini-tool/styles/luts/ektachrome-mobile-raw.png",
-    "bytes": 174018,
-    "sha256": "ace7a63112684cf3796f1be3a01f8870c3067267ea35e4d579a9b998d417c388"
-  },
-  {
-    "path": "mini-tool/styles/luts/ektachrome-raw.png",
-    "bytes": 174018,
-    "sha256": "ace7a63112684cf3796f1be3a01f8870c3067267ea35e4d579a9b998d417c388"
-  },
-  {
-    "path": "mini-tool/styles/luts/ektar-density.png",
-    "bytes": 160497,
-    "sha256": "69a91fbd638945a8c0b77af03e2999e60446eb956be8b305d31df9867ce6e254"
-  },
-  {
-    "path": "mini-tool/styles/luts/ektar-mobile-raw.png",
-    "bytes": 172438,
-    "sha256": "7734acb08784ac79f24741206fa33279affe4c734bd8d74dcaf28eed75709050"
-  },
-  {
-    "path": "mini-tool/styles/luts/ektar-raw.png",
-    "bytes": 172438,
-    "sha256": "7734acb08784ac79f24741206fa33279affe4c734bd8d74dcaf28eed75709050"
-  },
-  {
-    "path": "mini-tool/styles/luts/gold-density.png",
-    "bytes": 168434,
-    "sha256": "f9988bf954fc028e3b17847fa99ef678ca738ac6875b2d085ed1cd4c0c10ecde"
-  },
-  {
-    "path": "mini-tool/styles/luts/gold-mobile-raw.png",
-    "bytes": 175690,
-    "sha256": "ebafabb17788250415447b1490fc396b740f509956120cc0d11fe66d785b711c"
-  },
-  {
-    "path": "mini-tool/styles/luts/gold-raw.png",
-    "bytes": 175690,
-    "sha256": "ebafabb17788250415447b1490fc396b740f509956120cc0d11fe66d785b711c"
-  },
-  {
-    "path": "mini-tool/styles/luts/kodachrome-density.png",
-    "bytes": 178213,
-    "sha256": "fdfcc77f4f1153b90ed23d7000702125e236c23d40f0ebfd0eb9026efcefa30f"
-  },
-  {
-    "path": "mini-tool/styles/luts/kodachrome-mobile-raw.png",
-    "bytes": 174823,
-    "sha256": "c5964906b36557beb5b326afd3ed5f745acce2968e4496439df9a0f378b7a5aa"
-  },
-  {
-    "path": "mini-tool/styles/luts/kodachrome-raw.png",
-    "bytes": 174823,
-    "sha256": "c5964906b36557beb5b326afd3ed5f745acce2968e4496439df9a0f378b7a5aa"
-  },
-  {
-    "path": "mini-tool/styles/luts/portra160-density.png",
-    "bytes": 160994,
-    "sha256": "ddb0a23720512f415b7ce696e13993686040b6e47382f6fcbc3273043386eada"
-  },
-  {
-    "path": "mini-tool/styles/luts/portra160-mobile-raw.png",
-    "bytes": 173484,
-    "sha256": "d985486bcc0b882e846650bcf45312d186c51d987ac39cdc7546b2d0b01b795e"
-  },
-  {
-    "path": "mini-tool/styles/luts/portra160-raw.png",
-    "bytes": 173484,
-    "sha256": "d985486bcc0b882e846650bcf45312d186c51d987ac39cdc7546b2d0b01b795e"
-  },
-  {
-    "path": "mini-tool/styles/luts/portra800-density.png",
-    "bytes": 162278,
-    "sha256": "0b43ff9f877cd52dbd428e8a2ef7c13ad9d7b0db104da042c189576c3a4c266c"
-  },
-  {
-    "path": "mini-tool/styles/luts/portra800-mobile-raw.png",
-    "bytes": 173718,
-    "sha256": "4a3cd47e116238584f80bf7166d0926e892000c49efb946a25523cb0d77cdf89"
-  },
-  {
-    "path": "mini-tool/styles/luts/portra800-raw.png",
-    "bytes": 173718,
-    "sha256": "4a3cd47e116238584f80bf7166d0926e892000c49efb946a25523cb0d77cdf89"
-  },
-  {
-    "path": "mini-tool/styles/luts/portrait-density.png",
-    "bytes": 157042,
-    "sha256": "a25fcce2df5b7130578a5c52720c11a18a8bf2a96f6dc03c31b9645620623cb6"
-  },
-  {
-    "path": "mini-tool/styles/luts/portrait-mobile-raw.png",
-    "bytes": 174534,
-    "sha256": "e4cc87da374a12e1941751bd77fafd56bd405a54a9d8b8846ed8039a24616421"
-  },
-  {
-    "path": "mini-tool/styles/luts/portrait-raw.png",
-    "bytes": 174534,
-    "sha256": "e4cc87da374a12e1941751bd77fafd56bd405a54a9d8b8846ed8039a24616421"
-  },
-  {
-    "path": "mini-tool/styles/luts/print-fujifilm_crystal_archive_typeii-41.png",
-    "bytes": 246015,
-    "sha256": "84e4368c4abe2ace9960fa3dd349a370d04177c2945a6754376c4dffa4e9007c"
-  },
-  {
-    "path": "mini-tool/styles/luts/print-kodak_2302-41.png",
-    "bytes": 2043,
-    "sha256": "4a3f5effbe32557a105e615dcc77f6749a3be738f852b757e2e805317cbac694"
-  },
-  {
-    "path": "mini-tool/styles/luts/print-kodak_2383-41.png",
-    "bytes": 254905,
-    "sha256": "7d6da36aa36a85c88ae0d34bf4de4a00b5d52db38293c84b153ed6f939fd0557"
-  },
-  {
-    "path": "mini-tool/styles/luts/print-kodak_2393-53.png",
-    "bytes": 528476,
-    "sha256": "893664db4de8a5dcb5cb81366ee970c562e6a5c6800b6226fc317bc772995e80"
-  },
-  {
-    "path": "mini-tool/styles/luts/print-kodak_ektacolor_edge-41.png",
-    "bytes": 240344,
-    "sha256": "8c1959a9d3fc433960ab571f45b684d88224ff2ca23469a6e0d69ecfbf432437"
-  },
-  {
-    "path": "mini-tool/styles/luts/print-kodak_endura_premier-41.png",
-    "bytes": 199872,
-    "sha256": "863b383bc4634b2a9891fa9ff5b8aa56c07fbf9b2d88c04b3b85befd5947676b"
-  },
-  {
-    "path": "mini-tool/styles/luts/print-kodak_portra_endura-41.png",
-    "bytes": 253990,
-    "sha256": "2868dab4e444409dd8d97a56afd754e2fa3bb645de2b32590d7d5c2a2887ac83"
-  },
-  {
-    "path": "mini-tool/styles/luts/print-kodak_supra_endura-41.png",
-    "bytes": 245113,
-    "sha256": "38a06f12650f5072ef7d164c8e2f1c882d2a61357b833e2d50b2aaf1e7d6bd36"
-  },
-  {
-    "path": "mini-tool/styles/luts/print-kodak_ultra_endura-41.png",
-    "bytes": 202331,
-    "sha256": "1299ad233eb8db41431f9f65e8197bef3e8598b89ef991477440fc9c0bd73e66"
-  },
-  {
-    "path": "mini-tool/styles/luts/pro400h-density.png",
-    "bytes": 163170,
-    "sha256": "f4bcf43dd75ace17f012c590139990a8a92f2ace989d862fefc97ca93831c6a9"
-  },
-  {
-    "path": "mini-tool/styles/luts/pro400h-mobile-raw.png",
-    "bytes": 174857,
-    "sha256": "3973cb23154f2ad9ea6c82f75813ae96a00a774069bf00270ed28689fe1b43bf"
-  },
-  {
-    "path": "mini-tool/styles/luts/pro400h-raw.png",
-    "bytes": 174857,
-    "sha256": "3973cb23154f2ad9ea6c82f75813ae96a00a774069bf00270ed28689fe1b43bf"
-  },
-  {
-    "path": "mini-tool/styles/luts/provia-density.png",
-    "bytes": 174438,
-    "sha256": "f082f208ec9032776f06011b67177b62ffe62c9eb32ed2da96f42172db78f8e5"
-  },
-  {
-    "path": "mini-tool/styles/luts/provia-mobile-raw.png",
-    "bytes": 174371,
-    "sha256": "461ab551384f3fbbd69f68867ad50657ee9aa02b823f9704579b5404831a0c91"
-  },
-  {
-    "path": "mini-tool/styles/luts/provia-raw.png",
-    "bytes": 174371,
-    "sha256": "461ab551384f3fbbd69f68867ad50657ee9aa02b823f9704579b5404831a0c91"
-  },
-  {
-    "path": "mini-tool/styles/luts/scan-fujifilm_velvia_100-41.png",
-    "bytes": 335699,
-    "sha256": "689f2f12b9596783dc9d2f3eb0ccd023b994ca76e06f43c2a4e4c22d1145a3ae"
-  },
-  {
-    "path": "mini-tool/styles/luts/superia-density.png",
-    "bytes": 262588,
-    "sha256": "230b2d4189e51f9f7d3395effcc2c85c3eb66b5e40c05f042152165cc6b24f02"
-  },
-  {
-    "path": "mini-tool/styles/luts/superia-mobile-raw.png",
-    "bytes": 174629,
-    "sha256": "299dd55fc107b179aabbbb976f690517994b40ac211c7864faf585fd293c3c34"
-  },
-  {
-    "path": "mini-tool/styles/luts/superia-raw.png",
-    "bytes": 174629,
-    "sha256": "299dd55fc107b179aabbbb976f690517994b40ac211c7864faf585fd293c3c34"
-  },
-  {
-    "path": "mini-tool/styles/luts/trix-density.png",
-    "bytes": 4372,
-    "sha256": "c7ee1dcc841bce5ce22a49e1534ed8a4f526becbe65b2c7c0672efff07e77b9a"
-  },
-  {
-    "path": "mini-tool/styles/luts/trix-mobile-raw.png",
-    "bytes": 87708,
-    "sha256": "aee04020984d9466160332ab994da63a2d6b2bc76bd54e14bc8dc6bff054ffe0"
-  },
-  {
-    "path": "mini-tool/styles/luts/trix-mobile.png",
-    "bytes": 1101,
-    "sha256": "d6fc674e9e52d7a6ee5028d1f380419d41210d1a5e2e2722bbb47a18abde428f"
-  },
-  {
-    "path": "mini-tool/styles/luts/trix-raw.png",
-    "bytes": 87708,
-    "sha256": "aee04020984d9466160332ab994da63a2d6b2bc76bd54e14bc8dc6bff054ffe0"
-  },
-  {
-    "path": "mini-tool/styles/luts/ultramax-density.png",
-    "bytes": 161894,
-    "sha256": "3f3ed5ce3b47b09cdd1719130b9675ed7ebdfc25720f9473ee80c81d211ca1b4"
-  },
-  {
-    "path": "mini-tool/styles/luts/ultramax-mobile-raw.png",
-    "bytes": 174208,
-    "sha256": "45ca9c820327c58c5a8921d8ae466cfba4557fa67445b11e9e9d44236cf37287"
-  },
-  {
-    "path": "mini-tool/styles/luts/ultramax-raw.png",
-    "bytes": 174208,
-    "sha256": "45ca9c820327c58c5a8921d8ae466cfba4557fa67445b11e9e9d44236cf37287"
-  },
-  {
-    "path": "mini-tool/styles/luts/v3500t-density.png",
-    "bytes": 313539,
-    "sha256": "27c7fe5376e58f94f112b0771c2f14bdadb70d3e24d858545093d32a208b7b52"
-  },
-  {
-    "path": "mini-tool/styles/luts/v3500t-mobile-raw.png",
-    "bytes": 177960,
-    "sha256": "e8be28817746661ab2b84d090b3fd6ec5a302bc8ae8d5cd77d6e87243fcc7916"
-  },
-  {
-    "path": "mini-tool/styles/luts/v3500t-raw.png",
-    "bytes": 177960,
-    "sha256": "e8be28817746661ab2b84d090b3fd6ec5a302bc8ae8d5cd77d6e87243fcc7916"
-  },
-  {
-    "path": "mini-tool/styles/luts/velvia-density.png",
-    "bytes": 327400,
-    "sha256": "ba7c4c5c8e0a87b992594f65ee1c341eb6b9698474504bf0b249fbeebf5b9285"
-  },
-  {
-    "path": "mini-tool/styles/luts/velvia-mobile-raw.png",
-    "bytes": 175508,
-    "sha256": "26c395aad393576923f7fb845e5def064a0a50946b66fe4ad3f2a9e9d583dbfb"
-  },
-  {
-    "path": "mini-tool/styles/luts/velvia-raw.png",
-    "bytes": 175508,
-    "sha256": "26c395aad393576923f7fb845e5def064a0a50946b66fe4ad3f2a9e9d583dbfb"
-  },
-  {
-    "path": "mini-tool/styles/luts/verita200d-density.png",
-    "bytes": 165688,
-    "sha256": "fd1b937045d947baa110dc6a00ead5881f20268415552caf03a2baf119965321"
-  },
-  {
-    "path": "mini-tool/styles/luts/verita200d-mobile-raw.png",
-    "bytes": 174031,
-    "sha256": "cdc53777653c7b26784baa756a0328208ab02489388625a113ed12613ef40c23"
-  },
-  {
-    "path": "mini-tool/styles/luts/verita200d-raw.png",
-    "bytes": 174031,
-    "sha256": "cdc53777653c7b26784baa756a0328208ab02489388625a113ed12613ef40c23"
-  },
-  {
-    "path": "mini-tool/styles/luts/vision200t-density.png",
-    "bytes": 167372,
-    "sha256": "5c74f8cd7628146c967cb5e09cb9cf2f7345aaa84bef81c654f9ed94b4c9b2d6"
-  },
-  {
-    "path": "mini-tool/styles/luts/vision200t-mobile-raw.png",
-    "bytes": 177241,
-    "sha256": "5d1d910273fcd9c18e908564f984a7dc603033187789097c94e02e22a7a635f7"
-  },
-  {
-    "path": "mini-tool/styles/luts/vision200t-raw.png",
-    "bytes": 177241,
-    "sha256": "5d1d910273fcd9c18e908564f984a7dc603033187789097c94e02e22a7a635f7"
-  },
-  {
-    "path": "mini-tool/styles/luts/vision250d-density.png",
-    "bytes": 307009,
-    "sha256": "13fd2a695ffbbfebeb17cbc9e915c4864f477a0cdf32ec6ef2a337cb56902df2"
-  },
-  {
-    "path": "mini-tool/styles/luts/vision250d-mobile-raw.png",
-    "bytes": 173597,
-    "sha256": "a75f4501343b32f1b53460e2e8fcf2a7b6e6c33ad581008f88b343defe3a2dff"
-  },
-  {
-    "path": "mini-tool/styles/luts/vision250d-raw.png",
-    "bytes": 173597,
-    "sha256": "a75f4501343b32f1b53460e2e8fcf2a7b6e6c33ad581008f88b343defe3a2dff"
-  },
-  {
-    "path": "mini-tool/styles/luts/vision50d-density.png",
-    "bytes": 167928,
-    "sha256": "9af9badec4bd7e84f8d906261c6dffcdec10fd7a8742a26caba6a73a4b96515b"
-  },
-  {
-    "path": "mini-tool/styles/luts/vision50d-mobile-raw.png",
-    "bytes": 173761,
-    "sha256": "3642a00fc4cff71fbacc303c332b572a3170e339bac1ba1854ae15886185e3ce"
-  },
-  {
-    "path": "mini-tool/styles/luts/vision50d-raw.png",
-    "bytes": 173761,
-    "sha256": "3642a00fc4cff71fbacc303c332b572a3170e339bac1ba1854ae15886185e3ce"
-  },
-  {
-    "path": "mini-tool/styles/manifest.json",
-    "bytes": 192815,
-    "sha256": "c1d26a035779f1d46aa8ea81b968460c5d787db590010cdcfb8a8824b1d6f0ce"
-  },
-  {
-    "path": "mini-tool/styles/presets-mobile.js",
-    "bytes": 2595,
-    "sha256": "c9477761c3442c8048c6c93ce3f91294d8cfb54bae1b554aa05915fe6ea7d44b"
-  },
-  {
-    "path": "mini-tool/styles/presets-prints.js",
-    "bytes": 31808,
-    "sha256": "e39755a1571a344a293dcf278f7420fe6cbeadd2a547f5ca925cc7729225704f"
-  },
-  {
-    "path": "mini-tool/styles/presets-scans.js",
-    "bytes": 2024,
-    "sha256": "364a5e0be30fb71c34b1a38f6fc1aba8734fd87e19b274ad093c0a189f758ac0"
-  },
-  {
-    "path": "mini-tool/styles/presets.js",
-    "bytes": 1578798,
-    "sha256": "31f56034cbedf442af3a014940b0777e969f9c7f2a15327a919b294a26a059ac"
+    "path": "mini-tool/tests/demo-contract.test.cjs",
+    "bytes": 3203,
+    "sha256": "b959eb80893c1a63fcee82d8c3594303f274c6de3506d9724e561c828a3e9d93"
   },
   {
     "path": "mini-tool/tests/dev-server.test.cjs",
-    "bytes": 2770,
-    "sha256": "86a29ac07605dd3812f1025492a822b6c001c5e6b929c310168dd5481a0a904f"
+    "bytes": 3173,
+    "sha256": "6b0bc9a74de17e7a435a4cb4a278d17a9988a5949fd704c07f0ea0c386275b03"
   },
   {
-    "path": "mini-tool/tests/engine-resources.test.cjs",
-    "bytes": 2104,
-    "sha256": "e09bf483dbc406559002c289dc7b3476707aa31b327ac1770adb41d0002e3c82"
+    "path": "mini-tool/tests/editor-share.test.cjs",
+    "bytes": 39081,
+    "sha256": "3b99613d19db96e628eee7041b19f8a34ac4fc45d825fd73cc45eb9d6ddb6dba"
+  },
+  {
+    "path": "mini-tool/tests/fotufilm-halation.test.cjs",
+    "bytes": 2462,
+    "sha256": "be1f566dbd67cb7b5ae9f8ce799fa7b82fdc3726d81b24a9e0d2836114cf2636"
+  },
+  {
+    "path": "mini-tool/tests/fotufilm-optics.test.cjs",
+    "bytes": 6710,
+    "sha256": "7677776f36b1d2547656246aca673095bb3113b92d15aeecbcc395df63f21776"
+  },
+  {
+    "path": "mini-tool/tests/grain-editor-linear.test.cjs",
+    "bytes": 14181,
+    "sha256": "1d9241a21eec8cdc40d0bde7788340cec7fed8fa85851bdfe8d5fd6bc682aeb7"
+  },
+  {
+    "path": "mini-tool/tests/grain-resource-lifecycle.test.cjs",
+    "bytes": 8879,
+    "sha256": "b598dfb9e3e0cd7120fd6aacc6febf22a6bfd2d9ac00291877fb9f62026c174b"
   },
   {
     "path": "mini-tool/tests/minitool-share.test.cjs",
-    "bytes": 1479,
-    "sha256": "a2d023f1f8c42312a67e144f9674ac919cc8161257e0c4aec1ac6dbcf517b1be"
+    "bytes": 8629,
+    "sha256": "51e4dad04ee214828cd50012a6106ce3c9fd82cceddeaecbb4fd1479c4bdfc97"
   },
   {
-    "path": "mini-tool/validation/bugfix-2026-09-20-check.cjs",
-    "bytes": 15188,
-    "sha256": "fef043e13f3cb672b713a6e2ecbfa6c4e451fc6abdbc4146d8b4bfafcd5c4991"
+    "path": "mini-tool/tests/pixel-work.test.cjs",
+    "bytes": 4480,
+    "sha256": "a5f55d70fb0be7e2493590f84adf3b85834614ac26c0b5788f862b2547e2330c"
   },
   {
-    "path": "mini-tool/validation/canvas-allocation-check.cjs",
-    "bytes": 5346,
-    "sha256": "08d40ddf9b06e17ef212101f1d0c2d9f2c689fd53664acfc2a29ebb6e8e35208"
+    "path": "mini-tool/tests/test_demo_assets.py",
+    "bytes": 5348,
+    "sha256": "5ade391a352af83c544c8cdc94d00989db0bc9438b38dc66a039ede7b84cf5b3"
   },
   {
-    "path": "mini-tool/validation/collage-state-check.cjs",
-    "bytes": 8747,
-    "sha256": "b673abdf54fd13b2b549957ee0a66e9645313c24ffb0ad7b222076790bfad96d"
+    "path": "mini-tool/tests/texture-adaptive-tile.test.cjs",
+    "bytes": 9031,
+    "sha256": "7218918b815fcbfc2db69bea664e1558d4eb20031d23126ba861907159a260d6"
   },
   {
-    "path": "mini-tool/validation/diffusion-native-fixture.json",
-    "bytes": 1324,
-    "sha256": "bd2a747f4224159726cfcf7f53a1ad93a1a9de6e3731f57ceea9f05d558a6a22"
+    "path": "mini-tool/tests/texture-engine.test.cjs",
+    "bytes": 5288,
+    "sha256": "752f22b0a98d72ed4f256c339fce10e742837d0dab297ac68fc92912dcb2a3eb"
   },
   {
-    "path": "mini-tool/validation/dither-check.cjs",
-    "bytes": 6867,
-    "sha256": "c4ada9bbba8be74a7a05268fad7af6222513edb13e4f8903a05d0ef200d7d3be"
-  },
-  {
-    "path": "mini-tool/validation/eleven-stocks/upstream-reference/recipes.json",
-    "bytes": 2473,
-    "sha256": "e71244bb042d38a8ba64aa5ddd6fec9f4fed274c20bede1e7509fc687d6f000f"
-  },
-  {
-    "path": "mini-tool/validation/footer-check.cjs",
-    "bytes": 5523,
-    "sha256": "be2cd130b3aa773c4f575f74a40c69201114fe8d82357e5b78766bb7a6b123ba"
-  },
-  {
-    "path": "mini-tool/validation/gpu-diffusion-check.cjs",
-    "bytes": 9123,
-    "sha256": "dccd06b04f6059e0be4b629a24a76262dc99957bc66468f340e488aad3e7b199"
-  },
-  {
-    "path": "mini-tool/validation/gpu-optics-eq-check.cjs",
-    "bytes": 8249,
-    "sha256": "01a80d02e4e469d857efc629a35a1c01301701d294800bf41df9998f6becd2fc"
-  },
-  {
-    "path": "mini-tool/validation/gpu-optics-final-check.cjs",
-    "bytes": 5857,
-    "sha256": "d825ff333b1acc8ab126a0b6348fc8616f1961e713ffdace856b95c003ea948a"
-  },
-  {
-    "path": "mini-tool/validation/grain-acf-check.cjs",
-    "bytes": 16401,
-    "sha256": "ca40337de02ec8d069f72cc28775203bdf2d65261722874ffcf647be78764cca"
-  },
-  {
-    "path": "mini-tool/validation/grain-acf/baseline.json",
-    "bytes": 304252,
-    "sha256": "77200a116185ea035bf832f90551b6ba2dbc982fcbf1911f8593810bb828cf4f"
-  },
-  {
-    "path": "mini-tool/validation/grain-calib-page.html",
-    "bytes": 423,
-    "sha256": "57f2d1128b05ef768b26f604c70d51da5313e1da54b4b48404013aae0b83ae94"
-  },
-  {
-    "path": "mini-tool/validation/grain-perchannel-check.cjs",
-    "bytes": 15198,
-    "sha256": "f53f8717e539cc65d9473f84a4638e3db63f263bfb879bba0eb29478492f5fe1"
-  },
-  {
-    "path": "mini-tool/validation/grain-perchannel/mobile-film-sharedtt.fixture.js",
-    "bytes": 59075,
-    "sha256": "412af6fa379f4e96e4d3f2ab6fa0dc410e102cee879bc5ee497bf37172e50494"
-  },
-  {
-    "path": "mini-tool/validation/grain-scale-check.cjs",
-    "bytes": 5522,
-    "sha256": "1680a53129923f33a3c30c3825b64ea9bd28c6c082b260c40ca3c8de33836c8f"
-  },
-  {
-    "path": "mini-tool/validation/grain-scale-native-fixture.json",
-    "bytes": 98160,
-    "sha256": "2132d08640b84e079b091739f2d4c574665ee52a941f847f2ea3288b73c36779"
-  },
-  {
-    "path": "mini-tool/validation/import-preview-check.cjs",
-    "bytes": 3489,
-    "sha256": "1b4c526417645be46873608b65307a30b2da1be1881effba467dc4923786f56b"
-  },
-  {
-    "path": "mini-tool/validation/input-normalize-check.cjs",
-    "bytes": 4606,
-    "sha256": "e84d9a6a195ba06265aacd23774f9f15f155a7edfc595d6346693b2a2f2e764f"
-  },
-  {
-    "path": "mini-tool/validation/input-orientation-check.cjs",
-    "bytes": 6092,
-    "sha256": "24f09f8d05714e481c1a39780c4c4b39e910f0be3bf9262ef8fab1a351fb6464"
-  },
-  {
-    "path": "mini-tool/validation/lut-paths-check.cjs",
-    "bytes": 10536,
-    "sha256": "b1b0d8afd3d8c940c22f73b975204720080eebc7a952d7e65ef12be13c841a35"
-  },
-  {
-    "path": "mini-tool/validation/native-scheduling-fixture.json",
-    "bytes": 7449,
-    "sha256": "5024c8db2143e953dc6aaf47129e334614bc0cff1167fe1c319333163c002ff9"
-  },
-  {
-    "path": "mini-tool/validation/page-lifecycle-check.cjs",
-    "bytes": 4193,
-    "sha256": "abc2e464633561ab2752a90815842b660de7795fc7697e1a260a7fcf58ae963b"
-  },
-  {
-    "path": "mini-tool/validation/pipeline-fidelity-check.cjs",
-    "bytes": 11890,
-    "sha256": "712f115108a9ef0c6ab262f39fc9fdec458a02485e8cec202343fc5d50d221fd"
-  },
-  {
-    "path": "mini-tool/validation/processing-ready-check.cjs",
-    "bytes": 5155,
-    "sha256": "f7b19fed22781709b512d78898f23c0c7672aa35086b2637bad4cc5c2233e97e"
-  },
-  {
-    "path": "mini-tool/validation/pstep-lines-check.cjs",
-    "bytes": 5971,
-    "sha256": "0f130a5f8e4b11ee7fef6ce0ee06eaf069aa731ea16eef60e9c08bea5e8cef24"
-  },
-  {
-    "path": "mini-tool/validation/release-regression-check.cjs",
-    "bytes": 8693,
-    "sha256": "31b3778aedce2766a7fecd005f578ae93c3ed06fb9c8174a02ba92732b235949"
-  },
-  {
-    "path": "mini-tool/validation/result-design-check.cjs",
-    "bytes": 16119,
-    "sha256": "7da997145f001a6c9f4f7e123fc227965f3909008d9529191d2baf010ff504b2"
-  },
-  {
-    "path": "mini-tool/validation/sample-grid.html",
-    "bytes": 2505,
-    "sha256": "d975fb16b25e1810f071939869b3eff1b2024c797c2701d22eb22147d897b329"
-  },
-  {
-    "path": "mini-tool/validation/selfcheck-check.cjs",
-    "bytes": 10661,
-    "sha256": "11a837ba725d4ffd31867b9023aeca1e5c4470cd7e40431f8b6493a9a3394817"
-  },
-  {
-    "path": "mini-tool/validation/shared-lut/ab-check.py",
-    "bytes": 5920,
-    "sha256": "e902c74a0cd14e2f834522324699bde093eedaea7d04a787fddc78797097818d"
-  },
-  {
-    "path": "mini-tool/validation/shared-lut/ab-scan.py",
-    "bytes": 4846,
-    "sha256": "97c84391ffa89474a85fbfaa997368149d64ef33c26260383495c6d710b73f9c"
-  },
-  {
-    "path": "mini-tool/validation/shared-lut/bake-shared-scan.py",
-    "bytes": 2200,
-    "sha256": "719940cac20edbd4d05d82a67f73f64794566b1881a0c0e08e694a78a3ce4d78"
-  },
-  {
-    "path": "mini-tool/validation/shared-lut/batch-fit.py",
-    "bytes": 4873,
-    "sha256": "f3649205ffb1a33228ccf83a759f375cea94dd46f45b1442d11a125f22e62f07"
-  },
-  {
-    "path": "mini-tool/validation/shared-lut/fit-scan.py",
-    "bytes": 3220,
-    "sha256": "544113dc3089246aca14799c1a897e9c36f6465e3ae275c93d0dc40132074f95"
-  },
-  {
-    "path": "mini-tool/validation/shared-lut/pretransforms-scan.json",
-    "bytes": 6125,
-    "sha256": "08904fa1e84e0bf2608158a58eacdd46daead0b548ddf1ef8aedff82d2bec79b"
-  },
-  {
-    "path": "mini-tool/validation/shared-lut/pretransforms.json",
-    "bytes": 138956,
-    "sha256": "a09b9683302838d2e78d016cd320eb8b5c6ed0e60254aff96b3290802cd4b1f4"
-  },
-  {
-    "path": "mini-tool/validation/spatial-dir-check.cjs",
-    "bytes": 10333,
-    "sha256": "8a7e4e387348c9bfa428cc2f398ba4464dff63a22aaa6fe939ae60981d2a11f9"
-  },
-  {
-    "path": "mini-tool/validation/spatial-dir-native-fixture.json",
-    "bytes": 17536,
-    "sha256": "e493a7dd2dcefe0d13aab58d4ffb19af6dafd6f889bb8605e7fb7f4210fadcc0"
-  },
-  {
-    "path": "mini-tool/validation/spatial-dir-native-fixture.py",
-    "bytes": 1018,
-    "sha256": "fdac324439becf9276849083d9be7d3a26137ddf6daed19075895e4bb7602975"
-  },
-  {
-    "path": "mini-tool/validation/timing-probe-check.cjs",
-    "bytes": 3181,
-    "sha256": "44c60838f0ea3ecc05bbc2d0b31af0e42668f355e1dfd4de1095286ba02948c8"
+    "path": "mini-tool/tests/texture-near-gaussian.test.cjs",
+    "bytes": 5215,
+    "sha256": "4b89cc70db93bbbc03fc26f8442f4d7ddd18dc70b1bde968699fb6ccb9094e6d"
   },
   {
     "path": "skill/README.md",
-    "bytes": 275,
-    "sha256": "5408af73d663b2a576044c816217584303a97b0b3dbb790cb66c5dfb8bfaf2b3"
+    "bytes": 92,
+    "sha256": "f7b7a6d85054e27bc8e46191963d640c031557c71967d6ca22307adfce205018"
   }
 ]

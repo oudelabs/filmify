@@ -5,7 +5,7 @@ const http = require('node:http');
 const fs = require('node:fs');
 const path = require('node:path');
 
-const ROOT = path.resolve(__dirname, '..', 'dist', 'xhs-tool');
+const ROOT = path.resolve(process.env.FILMIFY_TEST_ROOT || path.join(__dirname, '..', 'dist', 'xhs-tool'));
 const MIME = {
   '.html': 'text/html; charset=utf-8',
   '.js': 'text/javascript; charset=utf-8',
@@ -36,6 +36,9 @@ if (!fs.existsSync(path.join(ROOT, 'index.html'))) {
   process.exit(1);
 }
 
+const browserAdapter = path.resolve(__dirname, '../minitool/browser-save.js');
+const nativePreview = arg('native', 'false') === 'true';
+
 const PREVIEW = path.resolve(__dirname, 'preview');
 
 const server = http.createServer((req, res) => {
@@ -46,6 +49,10 @@ const server = http.createServer((req, res) => {
   try { url = decodeURIComponent(req.url.split('?')[0]); }
   catch (_) { res.writeHead(400); res.end('bad request'); return; }
   if (url.includes('\0')) { res.writeHead(400); res.end('bad request'); return; }
+  if (url === '/browser-save.js' && !nativePreview) {
+    res.writeHead(200, { 'Content-Type': MIME['.js'], 'Cache-Control': 'no-store' });
+    res.end(req.method === 'HEAD' ? undefined : fs.readFileSync(browserAdapter)); return;
+  }
   let base = ROOT, rel = url;
   if (url === '/preview' || url.startsWith('/preview/')) { base = PREVIEW; rel = url.slice(8) || '/'; }
   const candidate = rel === '' || rel === '/' ? path.join(base, 'index.html')
@@ -62,6 +69,10 @@ const server = http.createServer((req, res) => {
   }
   res.writeHead(200, { 'Content-Type': MIME[path.extname(file).toLowerCase()] || 'application/octet-stream', 'Cache-Control': 'no-store' });
   if (req.method === 'HEAD') { res.end(); return; }
+  if (!nativePreview && file === path.join(ROOT, 'index.html')) {
+    const html = fs.readFileSync(file, 'utf8').replace('<script src="./app.js"></script>', '<script src="./browser-save.js"></script>\n <script src="./app.js"></script>');
+    res.end(html); return;
+  }
   const stream = fs.createReadStream(file);
   stream.on('error', () => res.destroy());
   stream.pipe(res);
